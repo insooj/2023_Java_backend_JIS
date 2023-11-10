@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 	DB 접속정보 파일 설정 -->
+<!-- 	<properties resource="properties/db.properties"/> -->
+	
+<!-- 	변수설정 -->
+<!-- 	<typeAliases> -->
+<!-- 		<typeAlias type="com.hk.dtos.FileDto" alias="FileDto"/> -->
+<!-- 	</typeAliases> -->
+	
+	
+	<mappers>
+		<mapper resource="sqls/FileMapper.xml"/>
+	</mappers>
+</configuration>
+
+
+
