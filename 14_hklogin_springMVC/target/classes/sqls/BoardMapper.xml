@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.login">
+<update id="userUpdateRole" parameterType="String" >
+	UPDATE userinfo
+	 SET role=#{role}
+	 WHERE id=#{id}
+	</update>
+	
+	
+	<update id="delUser" parameterType="String" >
+		UPDATE userinfo
+		SET enabled = 'N'
+		WHERE id =#{id} 
+	
+	</update>
+	
+	<select id="getAllUserList" resultType="HkDto">
+		SELECT seq, id, NAME, address, email, role,
+		enabled,regdate
+		FROM userinfo
+	</select>
+	
+	<select id="getUserList" resultType="HkDto" >
+		SELECT seq, id, NAME, role, regdate
+		FROM userinfo
+		WHERE enabled='Y'
+	</select>
+	
+	<insert id="insertUser" parameterType="HkDto" >
+	 INSERT INTO userinfo 
+	 VALUES (NULL,#{id},#{name},#{password},#{address},#{email},'Y','USER',SYSDATE())
+	</insert>
+	
+	<select id="getLogin" parameterType="HkDto" resultType="HkDto">
+		SELECT id,NAME,role
+		FROM userinfo
+		 WHERE id=#{id} AND password=#{password} AND enabled='Y'
+	</select>
+	
+	<select id="getUserInfo" parameterType="HkDto" resultType = "HkDto">
+		SELECT id, NAME, address, email, role, regdate
+		FROM userinfo
+		WHERE id=#{id}
+	
+	</select>
+	
+	<update id="updateUser" parameterType="HkDto">
+		 UPDATE userinfo
+		 SET address=#{address} , email=#{email}
+		 WHERE id = #{id}
+	
+	</update>
+	
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT id FROM userinfo WHERE id = #{id};
+	</select>
+	<select id="getAllList" resultType="HkDto">
+		SELECT seq, id, title, content, regdate 
+		FROM hkboard ORDER BY regdate DESC 	
+	</select>
+	
+	<insert id="insertBoard" parameterType="HkDto">
+		INSERT INTO hkboard 
+		VALUES(null, #{id} , #{title} , #{content} ,SYSDATE()) 
+	</insert>
+	
+	<select id="getBoard" parameterType="int" resultType="HkDto">
+		SELECT seq, id, title, content, regdate 
+		FROM hkboard 
+		WHERE seq = #{seq}
+	</select>
+	
+	<update id="updateBoard" parameterType="HkDto">
+		UPDATE hkboard 
+		SET title = #{title} , content= #{content} , regdate=SYSDATE() 
+		WHERE seq = #{seq} 
+	</update>
+	
+	<delete id="mulDel" parameterType="Map">
+		delete from hkboard where seq in 
+		<foreach collection="seqs" item="seq" open="(" close=")"
+						                      separator=",">
+			#{seq}
+		</foreach>
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
