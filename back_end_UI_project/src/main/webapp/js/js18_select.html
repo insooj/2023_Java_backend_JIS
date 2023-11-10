@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js18_select</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	//selected속성:선택여부(true/false)
+	//selectedIndex속성:선택한 option태그의 인덱스를 반환
+	//options속성: option요소들을 반환 --> body, forms, options, images..
+	
+	function show(){
+		var food=document.getElementsByName("food")[0];
+		//document.querySelectorAll("select[name=food]")[0]
+		var idx=food.selectedIndex;//선택한 option요소의 인덱스를 구함
+		alert(food.options[idx].value);//value속성값
+		//alert(food.options[idx].textContent);//내부요소
+	}
+	
+</script>
+</head>
+<body>
+<h1>가장 먹고 싶은 음식은?</h1>
+<form>
+	<select name="food" onchange="show()">
+		<option value="라면">라면</option>
+		<option value="만두">만두</option>
+		<option value="불고기" selected="selected">불고기</option>
+		<option value="국수">국수</option>
+		<option value="피자">피자</option>
+	</select>
+</form>
+<h1>가장 먹고 싶은 음식은?(다중선택)</h1>
+<form>
+	<select name="food" multiple="multiple" size="5">
+		<option value="라면">라면</option>
+		<option value="만두">만두</option>
+		<option value="불고기" selected="selected">불고기</option>
+		<option value="국수">국수</option>
+		<option value="피자">피자</option>
+	</select>
+	<input type="button" value="선택" onclick="show2()"/>
+</form>
+<script type="text/javascript">
+	function show2(){
+		//forms속성: form 내부 요소에 접근 가능함
+		//document.getElementsByName("food")[1];// 직접적
+		var food=document.forms[1].food;//간접적 
+		//-> food요소가 하나면 객체하나반환,두개이상이면 배열로 반환
+		console.log(food);
+		var str="";
+		for(var i=0;i<food.options.length;i++){
+			if(food.options[i].selected){// option요소들의 선택여부 확인
+				str+=food.options[i].value+" ";
+			}
+			
+		}
+		alert(str);
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

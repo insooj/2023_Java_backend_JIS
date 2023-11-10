@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+	img{width: 300px;height: 300px;}
+	.onOffImg{display: none;}
+	.addSize{width: 400px;height: 400px;}
+</style> 
+<script type="text/javascript">
+
+	/*
+		class 속성관련 메서드 4가지 
+		- addClass(): class 속성을 엘리먼트에 추가
+		- removeClass(): class 속성 삭제 
+		- hasClass(): class 속성 존재 여부
+		- toggleClass(): addClass()와 removeClass의 기능을 동시 구현
+		
+	*/
+	
+	$(function(){
+		$("#btn").click(function(){
+			$("img").toggleClass("onOffImg");
+		});
+		$("img").click(function(){
+			if($(this).hasClass("addSize")){
+				$(this).removeClass("addSize");
+			}else{
+				$(this).addClass("addSize");
+			}
+		});
+		
+		
+		$("#btn2").click(function(){
+			$("div>p").replaceWith("<strong>요소 바꾸기</strong>");
+			$("<strong>요소 바꾸기</strong>").replaceWith("div > p");
+		});
+		
+		
+	});
+	
+</script>
+</head>
+<body>
+<button id="btn">이미지켜고끄기</button>
+<img src="../js/img/0.jpg"/>
+<img src="../js/img/0.jpg"/>
+<img src="../js/img/0.jpg"/>
+<img src="../js/img/0.jpg"/>
+<hr/>
+<div>
+	<p>DOM대체 메서드</p>
+</div>
+<button id="btn2">바꾸기</button>
+</body>
+</html>

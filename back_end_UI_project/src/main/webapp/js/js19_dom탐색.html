@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js19_dom탐색_속성</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+/*
+	DOM 객체의 종류
+	- Document: 문서에 접근할 때 사용 -> 문서 객체
+	- Element: tag, 요소, 엘리먼트으로 불림 -> 태그 객체 
+	                                    -> 객체생성: getElementBy... 이용해서 생성
+	        예) Element(var) doc=document.getElementById("id");       
+	- Attribute: 속성을 객체로 정의 -> id, class, title, style, selected, checked...
+	- Text: text를 객체로 정의 -> <p>text</p> -> 텍스트(text) 객체         
+	- Node: html을 구성하는 모든 요소를 정의      
+
+	객체를 생성하는 방법
+	1. DOM탐색 메서드를 이용(직접선택) 
+	2. DOM탐색 속성을 이용(간접적선택:상대적 위치 선택)
+	  - parentNode속성: 타켓 요소의 부모 요소를 구하는 속성 : 반환타입 Node
+	  - parentElement속성: 동일한 기능 : 반환타입 Element   
+	  
+	  - childNodes속성: 타켓 요소의 자식 요소들을 구하는 속성 : 반환타입 Node
+	  - children속성: 동일한 기능 : 반환타입은 Element
+	  
+	  - firstChild/lastChild : 자식요소 중에 첫번째/마지막 요소를 구한다. :반환타입 Node 
+	  - firstElementChild/lastElementChild : 기능 동일 : 반환 타입 Element
+	  
+	  - previousSibling/nextSibling : 형제 요소를 구함 : 반환타입 Node
+	  - previousElementSibling/nextElementSibling : 기능 동일 : 반환타입 Element
+	  
+	3. create 메서드를 이용하는 방법
+	  - createElement(): tag
+	  - createAttribute(): 속성
+	  - createTextNode(): text
+*/
+	//parent관련 속성
+	function searchPar(){
+		var child02=document.getElementsByTagName("p")[1];//target 탐색
+		console.log(child02.nodeName);
+		console.log(child02.tagName);
+		var divNode=child02.parentNode;
+		console.log(divNode.nodeName);
+		var divEle=child02.parentElement;
+		console.log(divNode.nodeName);
+		divEle.style.backgroundColor="yellow";
+	}
+	//child관련 속성
+	function searchChi(){
+		var div = document.querySelectorAll("div")[0];//target요소
+		
+		//Node를 반환하는 속성을 이용할 경우
+		var divChildNodes=div.childNodes;//["txt",p,"txt",p,"txt",p,"txt"]
+		console.log(divChildNodes.length+":"+divChildNodes[2].nodeName);
+		
+		//Element를 반환하는 속성을 이용할 경우
+		var divChildElements=div.children;//[p,p,p]
+		console.log(divChildElements.length+":"+divChildElements[2].nodeName);
+	}
+	
+	function firstLastChi(){
+		var div = document.querySelectorAll("div")[0];//target요소
+		var firstChi=div.firstChild;
+		var firstChiEle=div.firstElementChild;
+		console.log(firstChi.nodeName+","+firstChiEle.nodeName);
+		
+		var lastChi=div.lastChild;
+		var lastChiEle=div.lastElementChild;
+		console.log(lastChi.nodeName+","+lastChiEle.nodeName);
+	}
+	
+	function siblingTest(){
+		var child02=document.getElementsByTagName("p")[1];
+		
+		//Node반환
+		var preP=child02.previousSibling;
+		var nextP=child02.nextSibling;
+		
+		//Element반환(tag)
+		var prePEle=child02.previousElementSibling;
+		var nextPEle=child02.nextElementSibling;
+		
+		console.log(preP.nodeName+":"+nextP.nodeName);
+		console.log(prePEle.nodeName+":"+nextPEle.nodeName);
+	}
+</script>
+</head>
+<body>
+<div>
+	<p>child01</p>
+	<p>child02</p>
+	<p>child03</p>
+</div>
+<button onclick="searchPar()">부모탐색</button>
+<button onclick="searchChi()">자식탐색</button>
+<button onclick="firstLastChi()">자식탐색2</button>
+<button onclick="siblingTest()">형제탐색</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

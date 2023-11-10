@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js02+대화창함수</title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+	//확인 버튼을 제공, 주로 경고나 코드 디버깅용으로 많이 사용된다.
+	function alertTest(){
+			alert("메시지만 출력하는 단순 대화창");
+	}	
+	//확인과 취소버튼을 제공, 선택에 따라서 true/false를 반환한다.
+	function confirmTest(){
+		if(confirm("정말 삭제하겠습니까?")){
+			//write(): 기존의 문서내용에 덮어 씌어진다. 
+			document.write("<b>네 삭제해주세요</b>");	
+		}else{
+			document.write("<b>취소합니다</b>");
+		}
+	}	
+	//텍스트 박스와 확인/취소 버튼을 제공, 입력값은 문자타입
+	//입력을 안하고 확인버틴을 블릭하면 공('')백 반환, 상대나미는 numm 번이 된다. 취소클릭하면 null반환)
+	function promptTest(){
+		var txt=prompt("과목을 선택하세요(1:java, 2:db, 4:JS)","해당 번호 입력!!");
+		console.log(txt);
+		switch(txt){
+			case "1" : console.log("자바를 선택했습니다"); break;
+			case "2" : console.log("DB를 선택했습니다"); break;
+			case "3" : console.log("JS를 선택했습니다"); break;
+			case null : console.log("취소를 선택했습니다"); break;
+			default : console.log("다시입력하세요"); 
+			
+		}
+	}
+</script>
+</head>
+<body>
+<h1>대화창 함수 사용하기</h1>
+<small>*종류는<strong>alert(),confirm(),prompt()</strong>가 있다.</small>
+<p>alert():<button onclick="alertTest()">클릭!</button></p>
+<p>confirm():<button onclick="confirmTest()">클릭!</button></p>
+<p>prompt():<button onclick="promptTest()">클릭!</button></p>
+</body>
+</html>

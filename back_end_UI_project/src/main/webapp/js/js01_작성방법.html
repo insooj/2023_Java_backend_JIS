@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js01_작성방법</title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript" src="test.js">
+	
+</script>
+<script type="text/javascript">
+	function embedded(){
+		var txt ="내부스타일방식";
+		alert(txt);
+	}
+	var txt3="head태그 내부에서는 함수단위로 작성해야 실행됨. 근데 이제는 됨";
+	console.log(txt3);
+//body요소에 내용을 수정하는 코드: body를 실행하지 않은 상태에서 먼저 실행하면 오류 
+	// document.getElementsByTagName("h1")[0].innerHTML="DOM탐색";
+	//브라우저가 로딩완료되면 함수 실행
+	window.onload=function(){
+		document.getElementsByTagName("h1")[0].innerHTML="DOM탐색";
+	}
+</script>
+</head>
+<body>
+<h1>자바스크립트의 구성</h1>
+<dl>
+	<dt onclick='javascript: var txt="inline방식입니다"; alert(txt);'>Core</dt>
+	<dd>문법(변수,제어문,객체,프로토타입,클로져..)</dd>
+	<dd>내장객체의 사용법</dd>
+	<dt onclick="embedded();">BOM</dt>
+	<dd>Window</dd>
+	<dd>location</dd>
+	<dd>Navigator/history/screen</dd>
+	<dd>Window</dd>
+	<dt>DOM</dt>
+	<dd>Document</dd>
+	<dd>Element</dd>
+	<dd>Attribute/Text/Node</dd>
+</dl>
+<script type="text/javascript">
+	function test(){
+		console.log("body 마지막 줄에 작성해도 됨");
+	}
+	
+	var txt2="body에서는 함수단위로 작성하지 않아도 됨";
+	console.log(txt2);
+</script>
+</body>
+</html>

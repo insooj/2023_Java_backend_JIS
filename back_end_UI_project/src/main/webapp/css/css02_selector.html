@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/*타입 선택자*/
+	p{
+		width: 800px;
+		background-color: orange;
+	}
+	strong{
+		color: pink;
+	}
+	
+	/*ID선택자*/
+	#a{
+		background-color: yellow;
+	}
+	#b{
+		color: red;
+	}
+	/*class 선택자*/
+	.p{
+		font-size: 25px;
+	}
+	/*자식선택자*/
+		 #a + strong {	
+			color: red;
+		}
+		/*인접선택자*/
+		#container2 #c ~ p{
+			
+			color: rgb(255, 255, 0);
+		}
+		/*속성생성자*/
+		#container2 p[class]{
+					 background-color: green;;
+		}
+		#container2 h1[title='기사의 제목입니다']{
+			background-color: blueviolet;
+		}
+		
+		/*가상선택자*/
+		a:link{color: aqua;}
+		a:visited{color: brown;}
+		a:active{color: chartreuse;}
+		#container2 p:hover{
+			background-color: yellow;
+			cursor: pointer;
+			width: 500px;
+			}
+			
+	/*수도클래스선택자*/
+	#container3 p::first-letter{
+		font-size: 40px;
+	}
+	#container3 p::first-line{
+		color: blue;
+	}
+	#container3 p:first-child{
+		background-color: greenyellow;
+	}
+	#container3 div>p:after{
+		content: "뒤에 가상의 요소가 있음";
+		color: red;
+	}
+</style>
+</head>
+<body>
+<div id = "container1">
+	<h1 id="a">잭슨홀 미팅에 <strong>안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	<h1>잭슨홀 미팅에 <strong id="b">안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	<p>잭슨홀 미팅이 무난하게 마무리되면서 불확실성을 털어낸 증시가 강세를 보이고 있다.
+	앞으로 증시는 경제지표 등을 주시하면서 <strong>회복세</strong>를 보일 것이란 전망이 나온다.
+	</p>
+	<p class="p" id="c">
+	28일 오전 9시30분 현재 코스피는 전장 대비 0.52% 오른 2532.25, 
+	코스닥은 0.45% 상승한 903.45를 기록 중이다.
+	</p>
+	<p class="p">
+	지난해 잭슨홀 미팅에서 제롬 파월 미국 연방준비제도(Fed) 
+	의장의 매파적(통화긴축 선호) 발언이 증시에 충격을 준 바 있기 때문에
+	이번 잭슨홀 미팅을 앞두고 긴장감이 고조됐다. 그러나 파월 의장의 발언이
+	 예상 수준으로 평가되면서 시장은 안도하는 모습을 보였다. 
+	</p>
+</div>
+<div id = "container2">
+	<h1 id="a">잭슨홀 미팅에 <strong>안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	<h1 title="기사의 제목입니다">잭슨홀 미팅에 <strong id="b">안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	<p>잭슨홀 미팅이 무난하게 마무리되면서 불확실성을 털어낸 증시가 강세를 보이고 있다.
+	앞으로 증시는 경제지표 등을 주시하면서 <strong>회복세</strong>를 보일 것이란 전망이 나온다.
+	</p>
+	<p class="p" id="c">
+	28일 오전 9시30분 현재 코스피는 전장 대비 0.52% 오른 2532.25, 
+	코스닥은 0.45% 상승한 903.45를 기록 중이다.
+	</p>
+	<p class="p">
+	지난해 잭슨홀 미팅에서 제롬 파월 미국 연방준비제도(Fed) 
+	의장의 매파적(통화긴축 선호) 발언이 증시에 충격을 준 바 있기 때문에
+	이번 잭슨홀 미팅을 앞두고 긴장감이 고조됐다. 그러나 파월 의장의 발언이
+	 예상 수준으로 평가되면서 시장은 안도하는 모습을 보였다. 
+	</p>
+	<p >
+	지난해 잭슨홀 미팅에서 제롬 파월 미국 연방준비제도(Fed) 
+	의장의 매파적(통화긴축 선호) 발언이 증시에 충격을 준 바 있기 때문에
+	이번 잭슨홀 미팅을 앞두고 긴장감이 고조됐다. 그러나 파월 의장의 발언이
+	 예상 수준으로 평가되면서 시장은 안도하는 <a href="https:naver.com">네이버</a> 보였다. 
+	</p>
+</div>
+<hr/>
+<div id = "container3">
+
+<!--	<p>자식요소중에서 첫본째 요소가 p태그인 요소를 선택한다.</p>-->
+	<h1 id="a">잭슨홀 미팅에 <strong>안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	<h1 title="기사의 제목입니다">잭슨홀 미팅에 <strong id="b">안도…경제지표</strong> 주시하며 증시 회복 가능성</h1>
+	
+	<div>
+	<p>잭슨홀 미팅이 무난하게 마무리되면서 불확실성을 털어낸 증시가 강세를 보이고 있다.
+	앞으로 증시는 경제지표 등을 주시하면서 <strong>회복세</strong>를 보일 것이란 전망이 나온다.
+	</p>
+	<p class="p" id="c">
+	28일 오전 9시30분 현재 코스피는 전장 대비 0.52% 오른 2532.25, 
+	코스닥은 0.45% 상승한 903.45를 기록 중이다.
+	</p>
+	<p class="p">
+	지난해 잭슨홀 미팅에서 제롬 파월 미국 연방준비제도(Fed) 
+	의장의 매파적(통화긴축 선호) 발언이 증시에 충격을 준 바 있기 때문에
+	이번 잭슨홀 미팅을 앞두고 긴장감이 고조됐다. 그러나 파월 의장의 발언이
+	 예상 수준으로 평가되면서 시장은 안도하는 모습을 보였다. 
+	</p>
+	<p >
+	지난해 잭슨홀 미팅에서 제롬 파월 미국 연방준비제도(Fed) 
+	의장의 매파적(통화긴축 선호) 발언이 증시에 충격을 준 바 있기 때문에
+	이번 잭슨홀 미팅을 앞두고 긴장감이 고조됐다. 그러나 파월 의장의 발언이
+	 예상 수준으로 평가되면서 시장은 안도하는 <a href="https:naver.com">네이버</a> 보였다. 
+	</p>
+	</div>
+</div>
+</body>
+</html>

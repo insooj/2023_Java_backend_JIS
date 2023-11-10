@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	fieldset{width:70%; border-radius:10px;}
+	body{margin-left: 20%;}
+</style>
+<script type="text/javascript" src="test_javascript_answer.js"></script>
+<script type="text/javascript">
+	// 	1.
+		function numCheck01(){
+			var numVal=document.getElementsByName("num")[0].value;
+			if(isNaN(numVal)){
+				alert("숫자가 아닙니다.");
+			}else{
+				alert("숫자입니다.");
+			}
+			
+		}
+	
+	// 	2.
+		function searchStr02(){
+			var val=document.getElementById("val").value;
+			var preTxt=document.getElementsByTagName("pre")[0].textContent;
+			if(preTxt.indexOf(val)!=-1){
+				alert("검색어 존재함");
+			}else{
+				alert("검색어존재하지 않음");
+			}
+			
+		}
+	// 	3.
+		function popupWin03(url){
+			open(url);
+		}
+	// 	4.
+		function allchk04(bool){
+			var chks=document.getElementsByName("subject");
+			for(var i=0;i<chks.length;i++){
+				chks[i].checked=bool;
+			}
+			
+		}
+	// 	5.
+		function randomNum05(){
+			var num=~~(Math.random()*20+1);
+			document.getElementById("rdmNum").value=num;
+		}
+	// 	6.
+		function selPage06(){
+			var selEle=document.getElementsByName("selsite")[0];
+// 			var url=selEle.options[selEle.selectedIndex].value;
+			var url=selEle.selected.value;
+			location.href=url;
+		}
+	// 	7.
+		function sortNum(){
+			var nums=document.getElementById("numVal").textContent.split(",");
+			document.getElementById("numSort").innerHTML=nums.sort(compare);
+		}
+		function compare(a,b){
+			return a-b;
+		}
+	// 	8.
+		function life(){
+			var birthVal=document.getElementsByName("birthday")[0].value;
+			var birthDay=new Date(birthVal);
+			var toDay=new Date();
+			var date=Math.ceil((toDay.getTime()-birthDay.getTime())/(1000*60*60*24));
+			document.getElementById("dateVal").innerHTML=date+"일";
+		}
+	// 	9.
+		function domTest(){
+			var doc=document.forms[0];
+			var vals=[doc.id.value, doc.pw.value, doc.addr.value, doc.phone.value];
+			var table=document.createElement("table");
+			for ( var i = 0; i < 1; i++) {
+				var tr=document.createElement("tr");
+				for ( var j = 0; j < vals.length; j++) {
+					var td=document.createElement("td");
+					td.textContent=vals[j];
+					tr.appendChild(td);
+				}
+				table.appendChild(tr);
+			}
+			table.setAttribute("style","width:200px;");
+			document.getElementById("domTable").appendChild(table);
+		}
+	// 	10.
+	function guguDanView(){
+		var val=document.getElementById("guguVal").value;
+		var str="";
+		for ( var i = 1; i < 10; i++) {
+// 			str+=val+"*"+i+"="+(val*i)+"<br>";
+			str+=`${val}*${i}=${val*i}<br>`;
+		}
+		document.getElementById("guguPrint").innerHTML=str;
+	}
+</script>
+</head>
+<body>
+<h3>1.숫자 판별하기</h3>
+<small>* 입력란에 값을 입력하고 버튼을 클릭하면 입력값이 숫자인지 아닌지 판별하여 대화창으로 "숫자입니다"/"숫자가 아닙니다" 출력하기</small><br>
+<fieldset>
+<legend>숫자입력</legend>
+<input type="text" name="num"><input type="button" value="판별" onclick="numCheck01()">
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>2.문자열 검색하기</h3>
+<small>* 입력란에 원하는 검색어를 입력하고 버튼을 클릭하면 검색할 내용에서 검색어가 존재하는지 여부를
+   <br/> 대화창으로 "검색어 존재함"/"검색어존재하지않음" 출력하기</small><br>
+<fieldset>
+<b>검색할 단어:</b><input type="text" id="val"><input type="button" value="검색" onclick="searchStr02()"><br>
+-검색할 내용:
+<pre>
+      지난 12월 패션 브랜드와 협업을 통해 한정판으로 출시한 ‘메종 마르지엘라 에디션’은 고가임에도 불구하고 수초만에 매진을 기록했다. 
+      메종 마르지엘라 에디션은 국내뿐 아니라 중국, 홍콩 등에서도 당일 완판을 기록했다.
+	  또한 디자인과 트렌드를 중요시하는 MZ세대들도 아이폰 못쟎게 폴더블폰에 호감을 보이고 있다. 
+	  특히 명품 화자품 케이스보다 더 예쁘다는 평가를 받는 갤럭시Z플립3는 여성고객들의 압도적인 지지를 받고 있다.
+</pre>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>3.팝업창 띄우기</h3>
+<small>* 라디오버튼을 클릭하면 원하는 사이트를 팝업창에 띄운다.(새로운 창에 이동시킨다.)</small>
+<fieldset>
+	<legend>원하는 사이트를 선택하세요</legend>
+	<input type="radio" name="site" value="http://www.naver.com" onclick="popupWin03(this.value)">네이버<br>
+	<input type="radio" name="site" value="http://www.daum.net" onclick="popupWin03(this.value)">다음<br>
+	<input type="radio" name="site" value="http://www.hankyung.com" onclick="popupWin03(this.value)">한경<br>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>4.전체선택버튼 구현하기</h3>
+<small>* 전체선택버튼을 클릭하면 체크항목을 모두 체크하거나 해제시키자.</small>
+<fieldset>
+	<legend>가장 좋아하는 과목은?</legend>
+	<input type="checkbox" name="all" onclick="allchk04(this.checked)">전체선택<br>
+	<input type="checkbox" name="subject">C#<br>
+	<input type="checkbox" name="subject">DataBase<br>
+	<input type="checkbox" name="subject">Script<br>
+	<input type="checkbox" name="subject">ASP
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>5. 랜덤숫자생성하기</h3>
+<fieldset>
+	<legend>1~20까지 숫자중 랜덤으로 생성하시오?</legend>
+	출력:<input type="text" id="rdmNum" readonly><input type="button" value="생성" onclick="randomNum05()">
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>6.select태그 사용하기</h3>
+<small>* 선택된 항목의 사이트로 페이지 이동하기.(현재창에서 이동한다.)</small>
+<fieldset>
+	<legend>이동할 페이지를 선택하세요</legend>
+	<select name="selsite" onchange="selPage06()">
+		<option value="http://www.naver.com">네이버</option>
+		<option value="http://www.daum.net">다음</option>
+		<option value="http://www.hankyung.com">한경</option>
+	</select>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>7.숫자 정렬하기</h3>
+<fieldset>
+	*숫자:<span id="numVal">1,15,8,69,45,23,37,19</span><br>
+	*정렬:<span id="numSort"></span><br>
+	<button onclick="sortNum()">숫자정렬</button>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>8.나의 살아온 일수 구하기</h3>
+<small>*현재날짜까지의 시간에서 생년월일까지의 시간의 차를 구하면 살아온 일수를 구할수 있다.(관련 메서드 getTime())</small>
+<fieldset>
+	*생년월일:<input type="date" name="birthday">
+	*살아온 일수:<span id="dateVal"></span>
+	<button onclick="life()">일수보기</button>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>9.입력값 테이블로 출력하기(dom메서드사용)</h3>
+<fieldset>
+<legend>테이블의 스타일 적용: width:200px; td:background-color:yellow;</legend>
+<form>
+	아 이 디:<input type="text" name="id"><br>
+	패스워드:<input type="password" name="pw"><br>
+	주 소:<input type="text" name="addr"><br>
+	전화번호:<input type="text" name="phone"><br>
+	<input type="button" value="추가" onclick="domTest()">
+</form>
+<div id="domTable"></div>
+</fieldset>
+
+<!-- -----------------------------------------------------------------------------------------------------------  -->
+<h3>10.구구단 출력하기</h3>
+<fieldset>
+<legend>원하는 구구단을 입력하고 화면에 출력합니다.</legend>
+<input type="text" id="guguVal">
+<input type="button" value="출력" onclick="guguDanView()">
+<div id="guguPrint"></div>
+</fieldset>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

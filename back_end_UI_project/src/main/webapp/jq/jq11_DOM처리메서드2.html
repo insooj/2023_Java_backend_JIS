@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+	
+	#menu{
+		background-color: orange;
+		text-align: right;
+		height: 50px;
+	}
+	
+	.sub_menu{
+		display: inline-block;
+		padding: 5px 10px;
+	}
+	a{
+		text-decoration: none;
+		font-size:20pt;
+	}
+	.box{
+		border: 2px solid red;
+		display: inline-block;
+	}
+</style> 
+<script type="text/javascript">
+/*  
+	-부모로 추가: 타겟을 감싼다
+	wrap() : 타겟에 부모엘리먼트를 추가 
+	unwrap(): 부모엘리먼트를 삭제 	
+	
+	삭제하는 메서드 
+	 - remove(): 타겟 요소를 삭제 
+	 - empty(): 타겟 내부에 요소를 삭제 
+	 - detach(): 타겟을 잘라내기 함 - > 삭제한 요소를 저장할 수 있다.
+	
+*/
+	
+
+	$(function(){
+		
+		$(".sub_menu:first").wrap("<div class='box'></div>");
+		
+		$(".sub_menu").click(function(){
+			$(".sub_menu").unwrap(".box");	
+			$(this).wrap("<div class = 'box'></div>");		
+		
+		});
+		
+		$("#container > p").eq(0).click(function(){
+			$(this).remove();
+			
+		});
+		$("#container > p").eq(1).click(function(){
+			$("#container").empty();
+		});
+		
+		$("container > p").eq(2).click(function(){
+			var p=$(this).detach();
+			p.css("background-color","blue").text("잘라내서 가져온 요소");
+			$("body").append(p);
+		})
+	});
+
+</script>
+</head>
+<body>
+<div id="menu">
+	<div class="sub_menu">
+		<a href="#" > 회사소개</a>
+		
+	</div>
+	<div class="sub_menu">
+		<a href="#" > 솔루션</a>
+		
+	</div>
+		<div class="sub_menu">
+		<a href="#" > 고객</a>
+		
+	</div>
+		<div class="sub_menu">
+		<a href="#" > 인재채용</a>
+	</div>
+</div>
+
+<h1>삭제메서드</h1>
+<div id="container" style="border: 1px solid red;">
+	<p>타겟삭제하기</p>
+	<p>내부요소삭제하기</p>
+	<p>잘라내기</p>
+	
+</div>
+
+</body>
+</html>

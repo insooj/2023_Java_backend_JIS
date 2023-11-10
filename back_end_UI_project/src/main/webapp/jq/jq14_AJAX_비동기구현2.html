@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq14_AJAX_비동기구현2</title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+	table{width:800px;}
+</style>
+<script type="text/javascript">
+/*
+ 	문제: 검색결과를 출력할때 표에서 컬럼(<tr><th>EMPLOYEE_ID</th>..</tr>) 추가하기
+ 	     이때 컬럼명은 xml파일에 태그 이름을 활용(dom탐색해서 구하기: 태그이름구하기-> .prop("tagName"))
+ 
+ 	     중복 코드 제거 -> table 생성 코드가 반복사용되고 있음 -> 함수에 정의해서 해결
+ */
+
+
+	$(function(){
+		$("#emp_search").click(function(){
+			//사원번호 구함
+			var empId=$("input[name=empId]").val();// val() -> value속성을 의미
+			if(empId==""||!isNaN(empId)){
+				$.ajax({
+					url:"emplist.xml",
+					method:"get",
+					dataType:"xml",
+					async:false,
+					success:function(data){
+						var rows=$(data).find("ROW");// ROW,ROW,ROW
+						
+						//사원번호 입력값이 없는경우는 전체 출력
+						if(empId==""){
+							var table=makeTable(rows);
+							$("div").html(table);
+						}else{//사원번호 입력값이 있는경우는 해당 정보 출력
+							rows=rows.find("EMPLOYEE_ID:contains("+empId+")").parent();
+							var table = makeTable(rows);// rows[row,row,row]
+							$("div").html(table);
+						}
+					},
+					error:function(){
+						alert("서버통신실패");
+					}
+				});
+			}
+		});
+	});
+ 	
+ 	// makeTable(Element elements)     
+ 	function makeTable(rows){
+ 		var table=$("<table border='1'></table>"); //table태그 생성(정의)
+		
+		//tr,th 생성작업
+		//tr을 하나만 만들면 되므로 for문은 한개 필요
+		//rows에서 그냥 row 0번째꺼 가져와서 처리하면 됨 -> 컬럼명만 필요하니깐..
+		var trh=$("<tr></tr>");
+		for(var i=0;i < rows.eq(0).children().length ;i++){
+			var th=$("<th></th>");
+	//		th에 태그이름을 구해서 text넣어주기
+			th.text(rows.eq(0).children().eq(i).prop("tagName"));
+	//		trh에 th 추가하기
+			trh.append(th);
+		}
+	//	table에 trh 추가하기
+		table.append(trh);	
+	
+		//tr, td 생성 작업
+		for(var i=0;i<rows.length;i++){
+			var tr=$("<tr></tr>");//tr태그 생성
+			for(var j=0;j<rows.eq(0).children().length;j++){//rows.eq(0).children().length: td의 개수
+				var td=$("<td></td>");//td태그 생성
+				td.text(rows.eq(i).children().eq(j).text());
+				tr.append(td);
+			}
+			table.append(tr);
+		}
+		
+		return table; // <- 추가 : 외부에 결과를 전달해줘야 함
+ 	}     
+</script>
+</head>
+<body>
+<h1>사원정보조회하기(여러명조회)</h1>
+<fieldset>
+	<legend>사원정보조회</legend>
+	<label>사원번호:</label>
+	<input type="text" name="empId" value=""/>
+	<input type="button" value="조회" id="emp_search"/>
+</fieldset>
+<div></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css09_layout</title>
+</head>
+<body>
+<style type="text/css">
+	#box1, #box2, #box3, #box4,#box5,#box6{
+		width: 200px;
+		height: 100px;
+		margin: 5px;
+		color: white;
+		background-color: blue;
+	}
+	#box1{
+		float: left;
+	}
+	#box2{
+		float: right;
+		width: 150px;
+	}
+	#box3{
+		clear:both;
+		width: 420px;
+	}
+	#container1{
+		width: 440px;
+		height: 300px;
+		border: 1px solid black;
+	}
+	
+	#container2{
+		width: 640px;
+		height: 200px;
+		border: 1px solid black;
+		overflow: auto;/*float을 해제하는 기능*/
+	}
+	
+	#container2:after{
+		content: " ";
+		display: block;
+		clear: both;
+	}
+	#box4{
+		float: left;
+	}
+	#box5{
+		float: left;
+	}
+	#box6{
+		float: right;
+	}
+	#box7{
+		width: 300px;
+		height: 400px;
+		overflow: auto;
+	}
+</style>
+<h1>레이아웃</h1>
+<div id="container1">
+	<div id="box1">box1</div>
+	<div id="box2">box2</div>
+	<div id="box3">box3</div>
+	
+</div>
+<div id="container2">
+	<div id="box4">box4</div>
+	<div id="box5">box5</div>
+	<div id="box6">box6</div>
+
+</div>
+<hr/>
+<h1>overflow 사용하기</h1>
+<div id="box7"><img src="../html/img/testimg.png" alt="강아지"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style type="text/css">
+	img{
+		width: 300px;
+		height: 200px;
+		vertical-align: middle;
+	}
+	a{
+		text-decoration: none;
+		font-size: 40px;
+	}
+</style> 
+<script type="text/javascript">
+	function creatImg(){
+		//라디어 버튼을 탐색해서 선택된 버튼의 값(value속성)을 구하기
+		var rdo=document.getElementsByName("rbtn");
+		var val="";
+		
+		//1번 방법: 라디오버튼 모두 구해서 각각 체크여부 확인해서 값 구하기 
+		for(var i=0;i<rdo.length;i++){
+			if(rdo[i].checked){
+				val = rdo[i].value;
+				break;
+				
+			}
+		}
+		//2번 방법: selector 표현식으로 체크된 상태의 요소 구하기 	
+		val = document.querySelector("input:checked").value;
+		console.log(val);	
+	
+	
+		//태그 생성하는 코드 작성
+		//img 태그 생성 
+		var img = document.createElement(img);
+		img.getAttribute("src",val);// img 태그 내부에 src 속성에 이미지 경로 넣어주기 
+		console.log("src:"+img.src); //src 속성에 값이 잘 들어갔는 지확인
+		var imgView=document.getElementById("imgview");
+		//문제점: appendChild()를 사용하면 기존에 요소가 남아있으면서 새로운 요소가 추가 
+
+		imgView.innerHTML="";//내부요소 지우기
+	
+		imgView.appendChild(img);//추가하기
+	
+	}
+	
+	/*
+		속성에 관련된 메서드 정리 
+		1. setAttribute("name","value") : 속성을 엘리먼트에 추가 (리터럴)
+		2. setAttributeNode(Attr name) : 속성을 엘리먼트에 추가 (객체)
+		3. getAttrubute("name") : "name" 속성의 값을 가져온다 .
+		4. hasAttrubute("name"): "name" 속성이 존재하는지 여부 (true/false)
+	
+	
+	*/
+	
+	onload = function(){
+		//a태그 객체 정의 
+		var anchs=document.getElementsByTagName("a");
+		var img = document.getElementsByTagName("a")[0].nextElementSibling;
+		console.log("이미지태그: "+img.tagName);
+		console.log("img요소에 alt속성이 있는지 여부:"+img.hasAttribute("alt"));
+		var count=0;
+		//왼쪽 a태그를 클릭했을때
+		anchs[0].onclick=function(){
+			//title 속성에 접근해서 값을 확인 
+			var imgTitle=img.getAttribute("title");//title 속성값 가져오기
+			if(imgTitle=="img0"){
+				alert("첫번째 이미지입니다.");
+			}else{
+				img.setAttribute("src","img/"+(--count)+".jpg");
+				img.setAttribute("title","img"+(count));
+			}
+		}
+		//오른쪽 a태그를 클릭했을때
+		anchs[1].onclick=function(){
+			//title 속성에 접근해서 값을 확인 
+			var imgTitle=img.getAttribute("title");//title 속성값 가져오기
+			if(imgTitle=="img2"){
+				alert("마지막 이미지입니다.");
+			}else{
+				img.setAttribute("src","img/"+(++count)+".jpg");
+				img.setAttribute("title","img"+(count));
+		}
+	}
+	}
+	
+</script>
+</head>
+<body>
+<h1>선택된 목록에 해당하는 이미지 보여주기</h1>	
+<input type="radio" name="rbtn" value="img/0.jpg"/><label>자장면</label>
+<input type="radio" name="rbtn" value="img/1.jpg"/><label>치킨</label>
+<input type="radio" name="rbtn" value="img/2.jpg"/><label>떡볶이</label>
+<button onclick="creatImg()">이미지생성</button>
+<div id="imgview"></div>
+<h1>화살표 방향에 따라 이미지가 바뀌는 기능</h1>
+<div>
+	<a href="#" id="lt" >◀</a>
+	<img src="img/0.jpg" title="img0" alt="자장면"/>
+	<a href="#" id="rt">▶</a>
+</body>
+</html>

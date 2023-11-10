@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+ $(function(){
+	$("pre>b").eq(0).css("color","red");
+	$("pre>b").slice(1,3).css("background-color","yellow");
+	//end(): 현재 탐색한 요소 바로 직ㄱ전에 탐색했떤 요소로 돌아간다.(현재까지 탐색했떤 작업 종료 )
+	$("pre>b").last().css("background-color","orange").end().eq(0).css("background-color","blue");
+	 
+	 
+	 //트리 탐색
+	 var len = $("#test2").find("b".length);
+	 console.log(len);
+	 //children(): default일 경우 모든 자식요소를 탐색
+	 //children("selector"): 자식요소중에 원하는 요소만 탐색
+	 $("pre").eq(1).children().slice(0,2).css("background-color","yellow");
+	 $("pre").eq(1).children(":first").css("color","red");
+	 
+	 //parent()
+	 $("b").parent().attr("title","부모요소");
+	 $("b").parents("div").css("border","1px solid red");
+	 
+	 //prev()
+	 $("b").last().prev().css("color","green");
+	 
+	 //siblings()
+	 $("#test2").find("b").eq(2).siblings().css("font-size","25pt");
+ });
+</script>
+</head>
+<body>
+<h1>필터 탐색</h1>
+<div id="test1">
+	<pre>
+		<b>eq(): 선택한 엘리먼트객체들 중에서 인덱스로 탐색한다.</b>
+		<b>slice(): 선택한 엘리먼트객체들 중에서 인덱스 번위로 탐색한다.</b>
+		<b>first():선택한 엘리먼트객체들 중에서 첫번째 요소를 탐색한다.</b>
+		<b>last():선택한 엘리먼트객체들 중에서 마지막 요소를 탐색한다.</b>
+	</pre>
+
+</div>
+<h1>트리 탐색</h1>
+<div id="test2">
+	<pre>
+		<b>find(): 선택한 엘리먼트의 자손들 중에 탐색한다.</b>
+		<b>children(): 선택한 엘리먼트의 자식 요소들을 탐색한다.</b>
+		<b>parent()/parents():선택한 엘리먼트의 부모요소를 탐색한다.</b>
+		<b>prev()/prevAll()/next()/nextAll():선택한 엘리먼트의 앞/뒤에 오는 형제요소를 탐색한다.</b>
+		<b>siblings(): 선택한 엘리먼트의 형제요소를 모두 탐색한다.</b>
+	</pre>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js11_lotto번호만들기</title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+	//로또번호를 랜덤하게 1~45중에 하나를 생성하는 기능(함수)
+	//random(): 0~1사이에 실수를 랜덤하게 생성한다.
+	function makeBall(){
+		return Math.floor(Math.random()*45+1);//1~45사이숫자반환
+	}
+	
+	//생성된 번호를 배열에 저장하는 기능 
+	function lottoBalls(){
+		var balls=new Array(7);//
+		var count =0;
+		
+		while(count<7){
+			var ball = makeBall();
+			if(balls.indexOf(ball)==-1){
+			balls.push(ball);
+			count++;}
+			
+		}
+			
+	//	console.log(balls.toString());
+		return balls;
+	}
+	function lottoPrint(){
+		//실습문제: 정렬된 당첨번호 5개와 보너스 번호 1개 나눠서 화며에 출력 (각각 span요소 내무)
+//		[1,2,3,4,5,6,7] --> 마지막 번호가 보너스 번호임
+//		출력형식: 로또번호:1-5-16-19-22-36 보너스 번호: 43
+//		배열에 관련된메서드를 활용해서 구현
+//		6개와 1개 분리해서 출력, 정렬, 포맷(형식)
+		                              
+		var balls7 = lottoBalls();
+		balls7.sort(function compareNum(a,b) {return a-b});
+		console.log(balls7.toString());
+		var ball8 = balls7.slice(0,6);
+		var ball9 = balls7.slice(6,7);
+		console.log(ball8.toString());
+		console.log(ball9.toString());
+		//pop(): 끝에서부터 잘라서 가져옴
+		//sort(): 크기순 정렬
+		 // join("-")
+		document.getElementsByTagName("span")[1].textConent=ball8;
+ 		document.getElementsByTagName("span")[3].textConent=ball9;
+		}
+	
+		function compareNum(a,b){
+		return a-b;//오름차순
+		//return b-a; // 내림차순 
+	}
+</script>
+</head>
+<body>
+<fieldset>
+	<legend>로또번호 생성하기</legend>
+	<span>로또번호:</span>
+	<span>1-5-16-19-22-36</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	<span>보너스번호:</span>
+	<span>43</span>
+	<button onclick="lottoPrint()">생성</button>
+</fieldset>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html08_레이아웃</title>
+<style type="text/css">
+	li{
+		display: inline-block;
+		width: 100px;
+		background-color: rgb(255, 128, 64);
+		text-align: center;
+	}
+	a{
+		text-decoration: none;
+		color: white;
+		font-weight: bold;
+	}
+	*{
+		border: 1px solid red;
+		margin: 10px;
+	}
+	</style>
+</head>
+<body>
+<div id = "wrap">
+	
+<!--	<div id="header"></div>-->
+<!--	<div id="container"></div>-->
+<!--	<div id="footer"></div>-->
+<header>
+	<h1> 웹 구현을 위한 기술</h1>
+</header>
+	<nav>
+		<ul>
+			<li><a href="#">메뉴1</a></li>
+			<li><a href="#">메뉴2</a></li>
+			<li><a href="#">메뉴3</a></li>
+			<li><a href="#">메뉴4</a></li>
+		</ul>
+	</nav>
+	<div id"body">
+		<section>
+			<h2>UI구현기술</h2>
+			<article>
+				<h3>HTML</h3>
+				<p>블럭요소와 인라인 요소는 ....</p>
+				<p>블럭요소와 인라인 요소는 ....</p>
+			</article>
+			<article>
+				<h3>CSS</h3>
+				<p>셀렉터 표현식을 잘 이해해야 한다</p>
+				<P>속성의 기능도 잘 알아야 한다</P>
+		</section>
+		<section>
+			<h2>서버구현기술</h2>
+			<article>
+				<h3>JAVA</h3>
+				<p>프로그래밍언어 문법 잘 알기</p>
+				<p>객체지향프로그래밍 개념 잘 알기</p>
+			</article>
+			<article>
+				<h3>DATABASE</h3>
+				<p>오라클</p>
+				<P>SQL문법 잘알기</P>
+				<P>MariaDB</P>
+		</section>
+	</div>
+	<aside>
+		<h2>한경닷컴IT교육센터</h2>
+		<p>인공지능개발자과정 모집중</p>
+	</aside>
+	<footer>
+		<address>사이트의 주소 등등 정보 작성</address>
+	</footer>
+</div>
+</body>
+</html>

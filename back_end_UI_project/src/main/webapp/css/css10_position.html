@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#box{
+		width: 650px;
+		height: 400px;
+		background-color: yellow;
+		position: relative;
+	}
+	p{
+		width: 200px;
+		height: 200px;
+		text-align: center;
+		font-size: 30px;
+		line-height: 200px;
+		border: 1px solid black;
+		border-radius: 100px;
+	}
+	.myred{
+		background-color: red;
+		position: absolute	;
+		left: 250px;
+		top: 10px;
+		z-index: 100;
+	}
+	.myblue{
+		background-color: blue;
+		position: absolute	;
+		left: 200px;
+		top: 100px;
+		z-index: 90;
+	}
+	.mygreen{
+		background-color: green;
+		position: absolute	;
+		left: 300px;
+		top: 100px;
+		z-index: 80;
+	}
+	.myblue:hover,.mygreen:hover,.myred:hover{
+		z-index: 150;
+		color: white;
+		font-size: 40px;
+	}
+	
+	/*메뉴만들기*/
+	li{list-style: none;}
+	
+	.sub_menu{
+		display: none;
+	position: absolute;
+	left: 20px;
+	top: 2px;
+	z-index: 100;
+	}
+	
+	.main_menu >li{
+		position: relative;
+		width: 150px;
+		margin-bottom: 5px;
+		
+	}
+	.main_menu >li:hover>.sub_menu{
+		display: block;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body>
+<h1>position속성</h1>
+<div id="box">
+	<p class="myred">red</p>
+	<p class="myblue">blue</p>
+	<p class="mygreen">green</p>
+</div>
+<hr/>
+<h1>메뉴만들기</h1>
+<div>
+	<ul class="main_menu">
+		<li>
+			<b>메뉴01</b>
+			<ul class="sub_menu">
+				<li>하위메뉴1</li>
+				<li>하위메뉴2</li>
+				<li>하위메뉴3</li>
+			</ul>
+		</li>
+		<li>
+			<b>메뉴02</b>
+			<ul class="sub_menu">
+				<li>하위메뉴4</li>
+				<li>하위메뉴5</li>
+				<li>하위메뉴6</li>
+			</ul>
+		</li>
+		<li>
+			<b>메뉴03</b>
+			<ul class="sub_menu">
+				<li>하위메뉴7</li>
+				<li>하위메뉴8</li>
+				<li>하위메뉴9</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

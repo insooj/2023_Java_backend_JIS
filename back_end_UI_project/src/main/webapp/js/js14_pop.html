@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js14_pop</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	
+	onload=function(){
+		// opener속성: open()를 이용해서 페이지를 열어준 부모 페이지를 나타냄
+		var val=window.opener.document.getElementsByName("val01")[0].value;
+		console.log(val);
+		document.getElementById("val").textContent=val;
+		
+		//팝업창에서 부모창으로 값을 전달
+		var val2=window.opener.document.getElementsByName("val02")[0];
+		val2.value="전달한 값";
+		
+		//창닫기
+		//close():페이지를 닫아주는 기능
+		document.getElementsByTagName("button")[0].onclick=function(){
+			//페이지 위치를 나타내는 속성: top, parent, self
+			window.self.close();
+		}
+		
+		
+	}
+</script>
+</head>
+<body>
+<h1>난 팝업창이다~~</h1> 
+<span id="val"></span>
+<button>닫기</button>
+</body>
+</html>
+
+
+
+
+

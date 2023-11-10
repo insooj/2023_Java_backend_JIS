@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css06_background</title>
+</head>
+<style type="text/css">
+	#box1{
+		width: 300px;
+		height: 300px;
+		background-color: olive;
+		/* position과 size 값은 서로 공유하고 있어서 "/"로 구분해줘야함 (position/size)*/
+		background:orange url("../html/img/menu.png") no-repeat 0px 0px / 100px 100px;
+	}
+	#box2{
+		border: 1px solid black;
+		width: 400px;
+		height: 300px;
+		background-image:url("../html/img/testimg.png"),url("../html/img/menu.png") ;
+		background-size: 100px 100px, 100px 100px;
+		background-repeat:no-repeat;
+		background-position: 20px 40px, 140px 160px;
+		background-attachment: fixed;
+		line-height: 30px;
+		text-align: justify;
+		}
+</style>
+<body>
+<h1>배경속성</h1>
+<h2>배경색상</h2>
+<div id="box1"></div>
+<h2>배경이미지</h2>
+<div id="box2">28일 오전 9시30분 현재 코스피는 전장 대비 0.52% 오른 2532.25, 
+	코스닥은 0.45% 상승한 903.45를 기록 중이다.</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>

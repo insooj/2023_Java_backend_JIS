@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js17_checkbox</title>
+<style type="text/css">
+	#red,#yellow,#blue,#black{
+		width:150px;
+		height: 150px;
+		border:1px solid gray;
+		color:gray;
+		text-align: center;
+		line-height: 150px;
+		position: absolute;
+	}
+	#yellow{
+		left:160px;
+	}
+	#blue{
+		top:160px;
+	}
+	#black{
+		top:160px;
+		left:160px;
+	}
+	#base{
+		position: absolute;
+		top:320px;
+	}
+	
+</style>
+<script type="text/javascript">
+
+	function allSel(chkAll){
+		//chkAll: 전체선택 체크박스 --> 체크 여부를 구함 : checked속성
+		console.log(chkAll.checked);
+		//체크박스 여러개 탐색
+		var chks=document.getElementsByName("chk");//[chk,chk,chk,chk]
+		//chkAll.checked=false;
+		for(var i=0;i<chks.length;i++){
+			//체크박스 각각에 대해 인덱스로 접근해서 체크여부 적용
+			chks[i].checked=chkAll.checked;
+		}
+		
+		//for(var chk in chks){
+		//	chk.checked=chkAll.checked;
+		//}
+	}
+	
+	//재사용을 한다면.. 함수로 정의하자 --> 체크개수를 반환하는 기능
+	function isCheck(chks){
+		var count=0;
+		for(var i=0;i<chks.length;i++){
+			if(chks[i].checked){// 체크여부 판단: 체크가 된 경우 true
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	function sel(){
+		
+		//1번 문제: 선택에 대한 유효값 처리: "최소한 하나 이상 체크하세요!" 경고창 띄우기
+		
+		//체크박스 여러개 탐색
+		var chks=document.getElementsByName("chk");//[chk,chk,chk,chk]
+
+		//체크개수를 확인해서 0개면 경고
+		//1개 이상이면 밑에 코드 실행
+		
+		var count=isCheck(chks);// 반복코드 줄이고 재사용을 위해 함수로 따로 구현
+		/*
+		for(var i=0;i<chks.length;i++){
+			if(chks[i].checked){// 체크여부 판단: 체크가 된 경우 true
+				count++;
+			}
+		}
+		*/
+		if(count==0){
+			alert("최소한 하나 이상 체크하세요");
+			clearDiv();
+		}else{
+			for(var i=0;i<chks.length;i++){
+				if(chks[i].checked){// 체크여부 판단: 체크가 된 경우 true
+					document.getElementById(chks[i].value).style.backgroundColor=chks[i].value;
+				}else{
+					document.getElementById(chks[i].value).style.backgroundColor="white";
+				}
+			}			
+		}//if종료
+		
+	}
+	
+	function clearDiv(){
+		// 4개의 박스 배경색 초기화
+		var divs=document.getElementsByTagName("div");
+		for(var i = 0; i < divs.length;i++){
+			divs[i].style.backgroundColor="white";
+		}
+		
+		// form요소 구성요소 초기화: reset() 
+		// body속성: document.body
+		document.forms[0].reset();//첫번째 form 요소의 내부를 초기상태로 정의
+		
+	}
+	
+	//2번 문제: 전체 선택 체크박스를 클릭한 후 나머지 박스 일부를 해제했을 때 , 
+	//         전체선택 박스도 해제되도록 구현 
+	//         일부 박스를 체크했을때 모두 체크가 되는 경우면 전체선택박스도 체크되도록 구현
+	onload=function(){
+		var chks=document.getElementsByName("chk");
+		
+		// for(var val in obj){} --> json객체 대상
+		// arrayObj.forEach(function(val){}) --> Array객체 대상
+		
+		// 4개의 체크박스의 체크여부의 개수를 구해서 총 체크박스 개수와 비교
+		for(var i=0;i<chks.length;i++){
+			chks[i].onclick=function(){
+				// 체크박스총개수==체크된 박스 개수
+				if(chks.length==isCheck(chks)){// true면 모두 체크됨 
+					document.getElementsByName("all")[0].checked=true;
+				}else{
+					document.getElementsByName("all")[0].checked=false;
+				}
+				
+				//탐색하는 방법2: css 셀렉터표현식으로 구하기
+				//document.querySelectorAll(css selector표현식)
+				var checkedObj=document.querySelectorAll("input[name=chk]:checked");// check된 input요소만 구함
+				var count=(checkedObj==null||checkedObj==undefined)?0:checkedObj.length;//체크된 개수를 구함
+				console.log(count);
+			}//onclick 종료
+		}//for문 종료
+		
+		//document.querySelectorAll(css selector표현식)
+		//var chks=document.querySelectorAll("input[name=chk]:checked");// check된 input요소만 구함
+		//var count=(chks==null||chks==undefined)?0:chks.length;//체크된 개수를 구함
+		//console.log(count);
+	}
+	
+</script>
+</head>
+<body>
+<div id="red">red</div><div id="yellow">yellow</div>
+<div id="blue">blue</div><div id="black">black</div>
+<div id="base">
+	<form action="" method="">
+		<input type="checkbox" name="all" onclick="allSel(this)" />전체선택<br/>
+		<input type="checkbox" name="chk" value="red"/><label>빨강</label><br/>
+		<input type="checkbox" name="chk" value="yellow"/><label>노랑</label><br/>
+		<input type="checkbox" name="chk" value="blue"/><label>파랑</label><br/>
+		<input type="checkbox" name="chk" value="black"/><label>검정</label><br/>
+		<button onclick="sel()" type="button" >선택</button>
+		<button onclick="clearDiv()" type="button">초기화</button>
+	</form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
