@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk.ans">
+
+<!-- 글목록 조회된 결과를 AnsDto에 저장한다. -->
+<!-- 	<select id="boardList" resultType="AnsDto"> -->
+<!-- 		SELECT  seq, id, title, content, regdate, -->
+<!--         refer,step,depth,readcount,delflag -->
+<!-- 		FROM answerboard -->
+<!-- 		ORDER BY refer DESC ,step -->
+<!-- 	</select>   -->
+<!-- 		<where> -->
+<!-- 			<if test="seq!=null"> -->
+<!-- 				seq=#{seq} -->
+<!-- 			</if> -->
+<!-- 		</where> -->
+	
+	<insert id="insertBoard" parameterType="AnsDto"  >
+		INSERT INTO answerboard 
+		VALUES(NULL,#{id},#{title},#{content},SYSDATE(),
+		(SELECT NVL(MAX(refer),0)+1 
+		FROM answerboard alias_for_subquery),
+		 0,0,0,'N')
+	</insert>
+<!-- 	<select id="getBoard" parameterType="int" resultType="AnsDto"> -->
+	<select id="getBoard" parameterType="Map" resultType="AnsDto">
+		select seq, id, title, content, regdate, readcount
+		from answerboard
+		where seq=#{seq}
+	</select>
+	
+	<update id="readCount" parameterType="int">
+		UPDATE answerboard
+		SET readcount=readcount+1
+		WHERE seq=#{seq}
+	</update>
+	
+	<update id="updateBoard" parameterType="AnsDto">
+		UPDATE answerboard
+		SET title=#{title}, content=#{content}, regdate=SYSDATE()
+		WHERE seq = #{seq}
+	</update>
+	
+	<update id="mulDel" parameterType="Map">
+		UPDATE answerboard
+		SET delflag = 'Y'
+		WHERE seq IN 
+		<foreach collection="seqs" item="seq" open="(" close=")" 
+											  separator=",">
+			#{seq}
+		</foreach>
+	</update>
+	
+	<update id="replyUpdate" parameterType="AnsDto">
+		<![CDATA[
+			UPDATE answerboard
+			SET step=step+1    
+			WHERE refer = (SELECT refer FROM answerboard WHERE seq=#{seq})
+			AND step > (SELECT step FROM answerboard WHERE seq=#{seq})		
+		]]>
+	</update>
+	
+	<insert id="replyInsert" parameterType="AnsDto">
+		<![CDATA[
+		INSERT INTO answerboard
+		VALUES(NULL,#{id},#{title},#{content},SYSDATE(),
+		 (SELECT refer FROM answerboard alias_for_subquery WHERE seq=#{seq}),
+		 (SELECT step FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		 (SELECT depth FROM answerboard alias_for_subquery WHERE seq=#{seq})+1,
+		  0,'N')
+		]]>  
+	</insert>
+	
+	<select id="getPCount" resultType="int">
+		SELECT CEIL(COUNT(*)/10) pageCount 
+		FROM answerboard
+	</select>
+	
+	<select id="boardList" parameterType="Map" resultType="AnsDto">
+		SELECT rn, seq, id, title, content, regdate,refer,step,depth,
+		 readcount,delflag
+		FROM (
+				SELECT ROW_NUMBER() OVER(ORDER BY refer DESC,step) rn,
+						 seq, id, title, content, regdate,refer,step,depth,
+						 readcount,delflag
+				FROM answerboard) a
+		<where>
+			<choose>
+				<when test="seq!=null">
+					seq=#{seq}
+				</when>
+				<otherwise>
+					CEIL(rn/10)=#{pnum}				
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
