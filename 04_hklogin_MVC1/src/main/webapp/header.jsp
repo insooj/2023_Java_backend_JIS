@@ -46,6 +46,3 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 </nav>
 </body>
 </html>
-
-
-

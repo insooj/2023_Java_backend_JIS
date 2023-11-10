@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/layout1.css" />
 </head>
 <body>
 <div id="container">
@@ -15,6 +16,7 @@
 		<div class="lead">
 			<span><%=ldto.getId()%>[<%=ldto.getRole()%>]님이 로그인 함</span> |
 			<span><a href="userController.jsp?command=getAllUserList">회원전체조회</a></span> |
+			<span><a href="userController.jsp?command=getUserList">회원정보[등급]수정</a></span> |
 			<span><a href="userController.jsp?command=logout">로그아웃</a></span>
 		</div>
 		<div class="contents">
@@ -26,16 +28,5 @@
 <%@include file="footer.jsp" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/layout1.css" />
 <script type="text/javascript">
 	onload=function(){
 		//아이디 중복체크를 완료한 후에 다른 정보를 입력할 수 있게 처리
@@ -34,7 +34,7 @@
 		if(id==""){
 			alert("아이디를 입력하세요");
 		}else{
-			window.open("UserController.jsp?command=idChk"
+			window.open("userController.jsp?command=idChk"
 					+"&id="+id,"아이디 확인", "width=300px,height=300px");
 		}
 	}
@@ -63,7 +63,7 @@
 </nav>
 <div class="container">
 	<h1>회원 가입</h1>
-	<form class="form-group" action="UserController.jsp" method="post"
+	<form class="form-group" action="userController.jsp" method="post"
 												onsubmit="return isPW(this)">
 		<input type="hidden" name="command" value="addUser"/>
 		<input style="width:700px;" type="text" name="id" placeholder="ID" required="required"/>
@@ -84,7 +84,6 @@
 </div>
 </body>
 </html>
-
 
 
 

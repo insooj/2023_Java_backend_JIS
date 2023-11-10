@@ -9,28 +9,30 @@ import java.sql.SQLException;
 //JDBC 1,2,6단계 구현
 public class DataBase {
 	
-	//1단계: 드라이버로딩
+	//1단계 : 드라이버로딩
 	public DataBase() {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			System.out.println("1단계: 드라이버로딩성공");
+			System.out.println("1단계:드라이버로딩성공");
 		} catch (ClassNotFoundException e) {
-			System.out.println("1단계: 드라이버로딩실패");
+			// TODO Auto-generated catch block
+			System.out.println("1단계:드라이버로딩실패");
 			e.printStackTrace();
 		}
 	}
 	
 	//2단계: DB연결
 	public Connection getConnection() throws SQLException {
-		String url = "jdbc:mariadb://localhost:3306/hkedu";
-		String user ="root";
-		String password = "qwerasdf";     
+		String url="jdbc:mariadb://localhost:3306/hkedu";
+		String user="root";
+		String password="qwerasdf";
 		
-		Connection conn = DriverManager.getConnection(url, user, password);
-		System.out.println("2단계: DB성공");
+		Connection conn=DriverManager.getConnection(url, user, password);
+		System.out.println("2단계:DB연결성공");
 		return conn;
 	}
-	//6단계: DB연결 닫기
+	
+	//6단계: DB 연결 닫기
 	public void close(ResultSet rs, PreparedStatement psmt, Connection conn) {
 		try {
 			if(rs!=null) {
@@ -40,12 +42,36 @@ public class DataBase {
 				psmt.close();
 			}
 			if(conn!=null) {
-				conn.close(); 		
+				conn.close();
 			}
-			System.out.println("6단계: DB닫기성공");
+			System.out.println("6단계:DB닫기성공");
 		} catch (SQLException e) {
-			System.out.println("6단계: DB닫기실패");
+			// TODO Auto-generated catch block
+			System.out.println("6단계:DB닫기실패");
 			e.printStackTrace();
 		}
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

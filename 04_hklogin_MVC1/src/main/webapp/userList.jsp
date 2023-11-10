@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function roleForm(id) {
+		location.href="userController.jsp?command=roleForm&id="+id;
+	}
+</script>
 <link rel="stylesheet" href="css/layout1.css" />
 </head>
 <%
@@ -25,7 +30,7 @@
 		</div>
 		<div class="contents">
 			<h1>관리자 페이지</h1>
-			<h2>회원전체목록</h2>
+			<h2>회원목록조회[수정]</h2>
 			<div id="userAllList">
 				<table class="table">
 					<tr>
@@ -33,9 +38,6 @@
 						<th>아 이 디</th>
 						<th>이    름</th>
 						<th>주    소</th>
-						<th>이 메 일</th>
-						<th>회원등급</th>
-						<th>탈퇴여부</th>
 						<th>가 입 일</th>
 					</tr>
 					<%
@@ -51,11 +53,18 @@
 							<tr>
 								<td><%=dto.getSeq()%></td>
 								<td><%=dto.getId()%></td>
-								<td><%=dto.getName()%></td>
-								<td><%=dto.getAddress()%></td>
-								<td><%=dto.getEmail()%></td>
-								<td><%=dto.getRole()%></td>
-								<td><%=dto.getEnabled().equals("Y")?"가입중일수도":"탈퇴했을수도"%></td>
+								<td><%=dto.getName()%></td>								
+								<td>
+									<%=dto.getRole()%>
+									
+									<%
+										if(!dto.getId().equals(ldto.getId())){
+											%>
+											<button type="button" onclick="roleForm('<%=dto.getId()%>')">변경</button>
+											<%
+										}
+									%>
+								</td>
 								<td><%=dto.getRegDate()%></td>
 							</tr>
 							<%

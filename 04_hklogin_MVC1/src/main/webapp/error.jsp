@@ -12,4 +12,3 @@
 <h3>오류내용:${param.msg}</h3>
 </body>
 </html>
-

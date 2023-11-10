@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/layout1.css" />
 </head>
 <body>
 <div id="container">
@@ -26,16 +27,5 @@
 <%@include file="footer.jsp" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
