@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="08_hklogin_MVC2_JSTL">
+                
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <property name="context-root" value="08_hklogin_MVC2_JSTL"/>
+                
+        <property name="java-output-path" value="/08_hklogin_MVC2_JSTL/build/classes"/>
+            
+    </wb-module>
+    
+</project-modules>
