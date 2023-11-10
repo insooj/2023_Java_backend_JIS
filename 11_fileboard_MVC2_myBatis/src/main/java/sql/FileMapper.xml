@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hk">
+
+	<insert id="insertFile" parameterType="FileDto">
+		INSERT INTO fileboard
+		VALUES(NULL,#{origin_name},#{stored_name}, #{file_size},SYSDATE())
+	</insert>
+
+	<select id="getFileList" parameterType="Map" resultType="FileDto">
+		SELECT seq, origin_name, stored_name, file_size, f_regdate
+		FROM fileboard
+		<where>
+			<if test="seq!=null">
+				<include refid="paramSeq"/>
+			</if>
+		
+		</where>
+		ORDER BY f_regdate DESC
+	</select>
+	
+	<sql id="paramSeq">
+		seq=#{seq}
+	</sql>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
