@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function allSel(bool){
+		var chks=document.getElementsByName("seq");// [seq,seq,seq,seq..]
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].checked=bool;//각각의 체크박스에 체크여부를 true/false로 적용
+		}
+	}
+	
+	function isCheck(){
+		if(confirm("정말 삭제 하시겠습니까?")){
+			return true;
+		}
+		return false;
+	}
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+	<div id="container">
+		<h1>일정목록보기</h1>
+		<form th:action="@{/schedule/calMulDel}" method="post"
+			  th:object="${deleteCalCommand}" onsubmit="return isCheck()">
+			<table class="table">
+				<col width="50px"/>
+				<col width="200px"/>
+				<col width="300px"/>
+				<col width="200px"/>
+				<tr>
+					<th><input type="checkbox" name="all" onclick="allSel(this.checked)"/></th>
+					<th>일정</th>
+					<th>제목</th>
+					<th>작성일</th>
+				</tr>
+				<th:block th:if="${#lists.isEmpty(list)}">
+					<tr>
+						<td colspan="4" style="text-align: center">작성된 일정이 없습니다.</td>
+					</tr>				
+				</th:block>
+				<th:block th:unless="${#lists.isEmpty(list)}">
+					<tr th:each="dto:${list}">
+						<td><input type="checkbox" name="seq" th:value="${dto.seq}"/></td>
+						<td th:text="${@util.toDates(dto.mdate)}"></td>
+						<td> 
+							<a th:href="@{/schedule/calBoardDetail(seq=${dto.seq})}"  th:text="${dto.title}"></a>
+						</td>
+						<td th:text="${#dates.format(dto.regdate, 'yyyy-MM-dd')}"></td>
+					</tr>				
+				</th:block>
+				<tr>
+					<td colspan="4">
+						<button type="submit" title="일정삭제" class="btn btn-default" >
+						  <span class="glyphicon glyphicon-trash" ></span>
+						</button>
+						<button type="button" title="달력보기" class="btn btn-default"
+								th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" >                        
+						  <span class="glyphicon glyphicon-calendar" ></span>
+						</button> 
+						<span class="errorField" th:if="${#fields.hasErrors('seq')}"
+												 th:errors="*{seq}"></span>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
