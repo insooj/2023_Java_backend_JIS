@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 *{
-	margin:0px ;
+	margin:0px;
 	padding:0px;
 }
 
@@ -40,7 +40,6 @@ form{
 input, button{
 	margin:2px;
 }
-
 
 
 

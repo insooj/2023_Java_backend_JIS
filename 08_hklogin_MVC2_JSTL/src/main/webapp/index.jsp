@@ -7,12 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/loginpage.css" />
+<link rel="stylesheet" href="css/loginpage2.css" />
 <script type="text/javascript" src="js/cookieFunc.js"></script>
 <script type="text/javascript">
 	//회원가입폼 이동
 	function registForm(){
-		location.href="registForm.user";
+		location.href="userController.jsp?command=registForm";
 	}
 	
 	//아이디를 쿠키에 저장
@@ -36,55 +36,11 @@
 		}
 	}
 </script>
-<style type="text/css">
-@charset "UTF-8";
-
-*{
-	margin:0px ;
-	padding:0px;
-}
-
-body{
-	background-color: #dcdcdc; 
-}
-
-button{
-	border:1px solid #3CA0E1;
-	background-color: #0A6EFF;
-	border-radius:5px;
-	width: 300px;
-	height:40px;
-	color:white;
-	font-weight: bold;
-}
-
-button:hover{
-	background-color:#B9E2FA;
-	color:#0A6EFF; 
-}
-
-form{
-	width:300px;
-	margin: 10% auto;
-}
-
-.loginVal{
-	border: 0px;
-	width: 288px;
-	height: 40px;
-	border-radius: 5px;
-	padding-left: 10px;
-}
-
-input, button{
-	margin:2px;
-}
-</style>
 </head>
-<%-- <% String msg=request.getParameter("msg"); %> --%>
+<% String msg=request.getParameter("msg"); %>
 <body>
 <form action="login.user" method="post" onsubmit="return userIdCookie()" >
-<!-- 	<input type="hidden" name="command" value="login"/> -->
+	<input type="hidden" name="command" value="login"/>
 	<h1>Login in</h1>
 	<input class="loginVal" type="text" name="id" placeholder="ID" required="required"/>
 	<input class="loginVal" type="password" name="password" placeholder="PASSWORD" required="required"/>
@@ -95,7 +51,6 @@ input, button{
 </form>
 </body>
 </html>
-
 
 
 

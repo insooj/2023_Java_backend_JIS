@@ -87,82 +87,84 @@
 		request.setAttribute("dto", dto);
 		pageContext.forward("userInfo.jsp");
 	}else if(command.equals("updateUser")){
-		String address=request.getParameter("address");
-		String email=request.getParameter("email");
+		String address = request.getParameter("address");
+		String email = request.getParameter("email");
+		String id = request.getParameter("id");
 		
-		//해당 페이지에서 파리미터로 전달받기
-		String id=request.getParameter("id");
 		
-		//session에서 ID값을 가져올 경우 : session에 저장되어있어서 어디에서든 가져올수있다
-// 		UserDto ldto=(UserDto)session.getAttribute("ldto");
-// 		String id=ldto.getId();
+	//	UserDto ldto = (UserDto)session.getAttribute("ldto");
+		//String id = ldto.getId();
 		
-		boolean isS=dao.updateUser(new UserDto(id,address,email));
+		
+		boolean isS = dao.updateUser(new UserDto(id, address, email));
 		if(isS){
 			%>
 			<script type="text/javascript">
 				alert("수정완료");
 				location.href="userController.jsp?command=myinfo&id=<%=id%>";
 			</script>
+			
 			<%
 		}else{
 			%>
 			<script type="text/javascript">
 				alert("수정실패");
-				location.href="error.jsp?msg="+encodeURIComponent("나의정보 수정실패");
-			</script>
-			<%
-		}
-	}else if(command.equals("delUser")){//회원탈퇴하기
-		String id=request.getParameter("id");
-		boolean isS=dao.delUser(id);
-		if(isS){
-			%>
-			<script type="text/javascript">
-				alert("회원탈퇴 성공!!");
-				location.href="index.jsp";
-			</script>
-			<%
-		}else{
-			%>
-			<script type="text/javascript">
-				alert("회원탈퇴 실패");
 				location.href="error.jsp";
 			</script>
 			<%
 		}
-	}else if(command.equals("getAllUserList")){//회원전체조회
-		List<UserDto>list=dao.getAllUserList();
+	}else if(command.equals("delUser")){ //회원탈퇴하기
+		String id = request.getParameter("id");
+		boolean isS = dao.delUser(id);
+		
+		if(isS){
+			%>
+			<script type="text/javascript">
+				alert("회원탈퇴 성공유");
+				location.href="index.jsp";
+			
+			</script>
+			<%
+		}else{
+			%>
+			<script type="text/javascript">
+				alert("회원탈퇴 실패유");
+				location.href="error.jsp";
+			
+			</script>
+			<%
+		}
+	}else if(command.equals("getAllUserList")){ //회원전체조회
+		List<UserDto> list = dao.getAllUserList();
 	
 		request.setAttribute("list", list);
-		
 		pageContext.forward("userAllList.jsp");
-	}else if(command.equals("getUserList")){//회원목록조회[등급수정을 위한 조회]
-		List<UserDto>list=dao.getUserList();
+	}else if(command.equals("getUserList")){ //회원목록조회[등급수정을 위한 조회]
+		List<UserDto>list = dao.getAllUserList();
 	
 		request.setAttribute("list", list);
 		pageContext.forward("userList.jsp");
 	}else if(command.equals("roleForm")){//등급수정폼으로 이동
-		String id=request.getParameter("id");
-		UserDto dto=dao.getUserInfo(id);//나의정보조회하기 기능
+		String id = request.getParameter("id");
+		UserDto dto = dao.getUserInfo(id); //나의정보조회하기 기능
 		
 		request.setAttribute("dto", dto);
-		pageContext.forward("userRoleForm.jsp");//등급수정 폼으로 이동
-	}else if(command.equals("userUpdateRole")){//등급수정하기
-		String id=request.getParameter("id");
-		String role=request.getParameter("role");
+		pageContext.forward("userRoleForm.jsp");
 		
-		boolean isS=dao.userUpdateRole(id, role);
+	}else if(command.equals("userUpdateRole")){
+		String id = request.getParameter("id");
+		String role = request.getParameter("role");
+		
+		boolean isS = dao.userUpdateRole(id, role);
 		if(isS){
-			response.sendRedirect("userController.jsp?command=getUserList");
+			response.sendRedirect("userController.jsp?command=getUserList");			
 		}else{
-			response.sendRedirect("error.jsp?msg="+URLEncoder.encode("등급수정실패","utf-8"));
+			response.sendRedirect("error.jsp?msg=" + URLEncoder.encode("등급수정실패","utf-8"));
 		}
 	}
 %>
 </body>
 </html>
-
 
 
 

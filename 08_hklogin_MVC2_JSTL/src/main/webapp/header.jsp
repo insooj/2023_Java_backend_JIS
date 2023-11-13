@@ -18,7 +18,7 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 <link rel="stylesheet" href="layout2.css" />
 </head>
 <%
-// 	UserDto ldto=(UserDto)session.getAttribute("ldto");
+	UserDto ldto=(UserDto)session.getAttribute("ldto");
 	
 	//로그인 정보가 없는 경우 화면 처리--> 로그인 정보가 null인경우 오류가 발생하기 때문
 // 	if(ldto==null){
@@ -47,6 +47,5 @@ response.setDateHeader("Expires", 0L); // Do not cache in proxy server
 </nav>
 </body>
 </html>
-
 
 
