@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+
+.content{
+	margin: 70px 150px;   
+}
+
+#container{
+		width: 1100px;
+		margin: 0 auto;
+	}
+	
+#footer{
+		background-color: #3c3c3c;
+		color:white;
+		line-height: 50px;
+		height: 50px;
+		text-align: center;
+	}
+	
+.errorField{
+	color:red;
+}	
