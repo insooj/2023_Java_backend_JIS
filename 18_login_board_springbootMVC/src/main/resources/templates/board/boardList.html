@@ -40,7 +40,7 @@
 		<th:block th:if="${#lists.isEmpty(list)}">
 			<tr>
 				<td colspan="4" style="text-align: center;" >---작성된 글이 없습니다.---</td>
-			</tr>
+			</tr> 
 		</th:block>
 		<th:block th:unless="${#lists.isEmpty(list)}">
 			<tr th:each="dto:${list}">
@@ -55,7 +55,8 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<button type="button" class="btn">글추가</button>
+					<button type="button" class="btn"
+					 th:onclick="|location.href='@{/board/boardInsert}'|">글추가</button>
 					<button type="submit" class="btn">삭제</button>
 					<span th:if="${#fields.hasErrors('seq')}"
 					      th:errors="*{seq}"></span>

@@ -30,7 +30,7 @@
 	
 	<select id="getBoard" parameterType="Integer" resultMap="boardDtoMap">
 		SELECT B.BOARD_SEQ, B.ID, B.TITLE, B.CONTENT, B.REGDATE
-      	,F.FILE_SEQ, F.ORIGIN_NAME
+      	,F.FILE_SEQ, F.ORIGIN_FILENAME, F.STORED_FILENAME
 		FROM TESTBOARD B LEFT OUTER JOIN FILEINFO F
 		ON B.BOARD_SEQ = F.BOARD_SEQ
 		WHERE B.BOARD_SEQ = #{board_seq}
