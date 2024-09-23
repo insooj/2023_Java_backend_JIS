@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js09_String객체</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	function strTest01(){
+		//리터럴 방식으로 선언
+		let string01="string";
+		let string02="test";
+		
+		//+연산자이용 문자열 합치기
+		let string03="string"+"test";
+		console.log(string01+","+string02);
+		
+		//concat():여러 문자열을 합칠때 
+		var newString="String".concat("test","java","script");
+		console.log(newString);
+		
+	}
+	
+	function strTest02(){
+		//문자열을 만나면 모두 문자열로 변환된다. +연산할때
+		var numVal=12.7;
+		var bool=true;
+		var str="숫자:"+numVal+"불린:"+bool;//문자열+숫자+문자열+불린형 --> 문자열
+	}
+	
+	function strTest03(){
+		// 동등연산자 == , 문자열 패턴 비교 (match())
+		var strVal=prompt("당신의 이름은?", "");
+		var span=document.getElementById("content");
+		
+		//숫자가 포함되었는지 확인
+		if(strVal.match(/[0-9]/)){
+			alert("숫자가 포함되어 있음~~ 확인바람");
+		}else{
+			if(strVal=="이한경"){
+				console.log("이한경입니다.");
+				span.innerHTML="<b>"+strVal+"</b>님 환영합니다.";
+			}else{
+				console.log("이한경이 아닙니다.");
+				span.textContent=`${strVal}님은 이한경이 아닙니다.`;
+			}
+		}
+	}
+	
+	function strTest03_2(){
+		//대소문자를 구분한다. ---> 구분없이 비교를 한다면.
+		//toUpperCase(), toLowerCase() : 모두 대문자, 소문자로 변환
+		
+		var strVal="String";
+		if(strVal.toLocaleUpperCase()=="STRING"){
+			console.log("대문자로 변환해서 비교함");
+		}else{
+			console.log("값이 다르다");
+		}
+		
+		//동등연산를 사용하면 비교하는 자료형도 자동형변환된다.
+		var numVal=10;//숫자형
+		if(numVal=="10"){
+			alert("==연산자사용: 숫자10이 맞습니다.");
+		}
+		
+		//동등연산자 엄격하게 비교 ===
+		if(numVal==="10"){
+			alert("==연산자사용: 숫자10이 맞습니다.");
+		}else{
+			alert("숫자10과 같지 않다");
+		}
+		
+		//객체비교
+		var strLit="한경";//리터럴 정의
+		var strObj=new String("한경");//new 객체정의
+		if(strLit==strObj){
+			console.log("==연산자:문자열이 같다");
+		}
+		
+		if(strLit===strObj){
+			console.log("===연산자:문자열이 같다");
+		}else{
+			console.log("===연산자:문자열이 다르다");
+		}
+	}
+	
+	function strTest04(){
+		/*
+		문자열 검색하기
+		indexOf():문자열의 왼쪽 --> 오른쪽으로 검색, 검색한 단어의 첫글자 인덱스 반환
+		lastIndexOf():오른쪽 왼쪽으로 검색
+		검색한 단어가 존재하지 않으면 -1을 반환 (존재여부 판단)
+		*/
+		var strValue="류승룡, 조인성, 고윤정, 한효주, 차태현, 류승범";
+		var inputObj=document.getElementsByName("name")[0];
+		if(inputObj.value==null||inputObj.value==""){
+			alert("입력값을 확인하세요");
+			//포커스기능
+			inputObj.focus();
+		}else if(strValue.indexOf(inputObj.value)==-1){// 존재하지 않는 경우
+			alert(`${inputObj.value} 이름이 존재하지 않습니다.`);
+		}else{//존재하는 경우
+			alert(`${inputObj.value} 이름이 존재합니다.`);
+		}
+	}
+	
+	function strTest05(){
+		//substring(): 문자열을 시작,종료 인덱스로 추출
+		//split(): 문자열중에 기준이 되는 요소로 나누어 배열로 반환
+		//"indexOf메서드"  "substring()메서드" 각각 추출해서 console에 출력하기 
+		var strVal="문자열 추출하기. 관련 메서드:indexOf메서드, substring()메서드.";
+		var sIdx=strVal.indexOf(":");
+		var eIdx=strVal.lastIndexOf(".");
+		var result=strVal.substring(sIdx+1,eIdx);//"indexOf메서드, substring()메서드" 추출
+		var splitVal=result.split(",");//["indexOf메서드", " substring()메서드"]
+		var strVal01=splitVal[0];
+		var strVal02=splitVal[1].trim();// trim() : 문자열의 앞뒤 공백 제거
+		console.log(`${strVal01}와 ${strVal02}`);
+	}
+	
+	var count=6;//전역변수
+	function strTest06(){
+		//문제: 입력 키워드 최대 6개로 제한 
+		//     prop변수에 "사과,수박,바나나" 저장 
+		//     --> "<br/>키워드:사과<br/>키워드:수박<br/>키워드:바나나" span 내부에 출력
+		var prop=prompt("쉼표로 구분하여 키워드를 입력하세요","예:사과,수박,바나나");
+		var propArray=prop.split(",");//["사과","수박","바나나"]
+		if(propArray.length>count){
+			alert(count+"개까지만 입력 가능합니다.");
+		}else{
+			var propVal="";
+			for(var i=0;i<propArray.length;i++){
+				propVal=propVal+"<br/>키워드:"+propArray[i];
+			}
+			document.getElementById("key").innerHTML=propVal;			
+		}
+	}
+	
+	//입력 키워드 개수를 제한하는 가능 구현 : 
+	function numCount(buttonEle){
+		count=document.getElementById("num").value;
+		buttonEle.style.color="red";
+		document.getElementById("num").disabled="disabled";// 비활성화
+	}
+</script>
+</head>
+<body>
+<h1>String객체의 사용</h1>
+<h2>문자열합치기<button onclick="strTest01()">클릭</button></h2>
+<h2>다른 자료형 합치기<button onclick="strTest02()">클릭</button></h2>
+<h2>문자열비교하기<button onclick="strTest03()">클릭</button><span id="content"></span></h2>
+<h2>문자열비교하기2<button onclick="strTest03_2()">클릭</button></h2>
+<h2>
+	<span>부분문자열 검색하기:</span>
+	<label>이름검색</label>
+	<input type="text" name="name"/>
+	<button onclick="strTest04()">검색</button>
+</h2>
+<h2>부분문자열 추출하기<button onclick="strTest05()">클릭</button></h2>
+
+<h2>키워드 나누기<button onclick="strTest06()">클릭</button></h2>
+<fieldset>
+	<label>최대입력수:</label>
+	<input type="number" id="num"  min="1"/>
+	<button onclick="numCount(this)">설정</button>
+	<button onclick="num.disabled='';">해제</button>
+</fieldset>
+<span id="key"></span>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

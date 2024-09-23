@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+	.special{color:red;}
+	.year{background-color: orange;}
+	.afterlink{background-color:green;}
+	.tragedy{background-color:pink;}
+</style>
+<script type="text/javascript">
+	$(function(){
+	/*
+	
+		1. 중첩된 리스트의 두번째 레벨에 있는 모든 <li>요소에 special클래스를 추가한다.
+		 <ul>첫번째 레벨
+			<li>
+		 		<ul>두번째레벨
+		 			<li></li> <------class=special 추가
+		 		</ul>
+	 		</li>
+		</ul>
+	*/
+	//1번
+		$("ul > li > ul > li ").attr("class","special");
+
+	/*
+		2. 테이블의 세번째 열에 있는 모든 셀에 year클래스를 추가한다.
+		 <tr><td></td><td></td><td class="year"></td></tr>
+		 <tr><td></td><td></td><td class="year"></td></tr>
+		 <tr><td></td><td></td><td class="year"></td></tr>
+	*/
+	//2번
+		
+	
+	//	$("td:nth-child(3)").attr("class","year");
+		
+		//var trs=$("tr");
+		//for(var i=0;i<trs.length;i++){
+		//	trs.eq(i).children("td").eq(2).attr("class","year");
+		//}
+		$("tr").each(function(){
+			$(this).children().eq(2).attr("class","year");
+		});
+	/*
+		3. Tragedy(비극)라는 단어를 포함하는 첫 번째 테이블 행(row)에 special클래스를 추가한다.
+		<tr class="special">
+		<td>Hamlet</td>
+		<td>Tragedy</td>
+		<td>1604</td>
+		</tr>
+	*/
+	//3번
+		$("td:contains('Tragedy')").eq(0).parent("tr").attr("class","special");
+/*
+		$("Td").each(function(){
+			if($(this).text()="Tragedy"){
+				$(this).parent("tr").attr("class","special");
+			return false;//함수를 종료 
+			}
+		});
+	*/	
+	/*
+		4. 링크(<a>)를 포함하는 모든 리스트 항목<li>을 선택한다. 선택된 항목에 뒤따라오는 형제 리스트 항목에 afterlink클래스를 추가한다.
+		<ul>
+		<li><a href="hamlet.pdf">Hamlet</a></li> <----a태그를 포함하는 li태그들 선택
+		<li>Macbeth</li> <-----------------------선택한 a태그 다음에 오는 li태그에 class="afterlink" 추가
+		<li>Romeo and Juliet</li>
+		</ul>
+	*/
+	//4번
+	
+	$("a").parent("li").next("li").attr("class","afterlink");
+	
+	/*
+	$("li:has(a)").eq(1).next().attr("class","afterlink");
+$("li:has(a)").eq(3).next().attr("class","afterlink");
+$("li:has(a)").eq(5).next().attr("class","afterlink");
+$("li:has(a)").eq(6).next().attr("class","afterlink");
+	*/
+	
+	/*
+		5. 모든 .pdf링크의 가장 가까운 조상 <ul>에 tragedy클래스를 추가한다.
+		<ul> <-----ul태그에 class="tragedy" 추가
+		 <li><a href="hamlet.pdf">Hamlet</a></li>
+		 <li>Macbeth</li>
+		 <li>Romeo and Juliet</li>
+		</ul>
+	*/
+	//5번
+	$("a[href $= '.pdf']").parents("ul").eq(0).attr("class","tragedy");
+	
+	
+
+});
+	</script>
+</head>
+<body>
+<div id="container">
+	<h2>Selected Shakespeare Plays</h2>
+	<ul id="selected-plays" class="clear-after">
+		<li>Comedies
+			<ul>
+				<li><a href="/asyoulikeit/">As You Like It</a></li>
+				<li>All's Well That Ends Well</li>
+				<li>A Midsummer Night's Dream</li>
+				<li>Twelfth Night</li>
+			</ul>
+		</li>
+		<li>Tragedies
+			<ul>
+				<li><a href="hamlet.pdf">Hamlet</a></li>
+				<li>Macbeth</li>
+				<li>Romeo and Juliet</li>
+			</ul>
+		</li>
+		<li>Histories
+			<ul>
+				<li>Henry IV (<a href="mailto:henryiv@king.co.uk">email</a>)
+					<ul>
+						<li>Part I</li>
+						<li>Part II</li>
+					</ul>
+				</li>
+				<li><a href="http://www.shakespeare.co.uk/henryv.htm">Henry V</a></li>
+				<li>Richard II</li>
+			</ul>
+		</li>
+	</ul>
+	<h2>Shakespeare's Plays</h2>
+	<table>
+		<tr>
+			<td>As You Like It</td>
+			<td>Comedy</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>All's Well that Ends Well</td>
+			<td>Comedy</td>
+			<td>1601</td>
+		</tr>
+		<tr>
+			<td>Hamlet</td>
+			<td>Tragedy</td>
+			<td>1604</td>
+		</tr>
+		<tr>
+			<td>Macbeth</td>
+			<td>Tragedy</td>
+			<td>1606</td>
+		</tr>
+		<tr>
+			<td>Romeo and Juliet</td>
+			<td>Tragedy</td>
+			<td>1595</td>
+		</tr>
+		<tr>
+			<td>Henry IV, Part I</td>
+			<td>History</td>
+			<td>1596</td>
+		</tr>
+		<tr>
+			<td>Henry V</td>
+			<td>History</td>
+			<td>1599</td>
+		</tr>
+	</table>
+	<h2>Shakespeare's Sonnets</h2>
+	<table>
+		<tr>
+			<td>The Fair Youth</td>
+			<td>1–126</td>
+		</tr>
+		<tr>
+			<td>The Dark Lady</td>
+			<td>127–152</td>
+		</tr>
+		<tr>
+			<td>The Rival Poet</td>
+			<td>78–86</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

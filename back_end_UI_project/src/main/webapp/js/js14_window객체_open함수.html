@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js14_window객체_open함수</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	//페이지가 로딩되면 이벤트 발생
+	window.onload=function(){
+		document.cookie="user=hk;max-age=0";
+		document.cookie="user2=hk;max-age=0";
+		console.log(document.cookie);
+		document.getElementById("btn").onclick=function(){
+			
+			var url="js14_pop.html";
+			var title="팝업창페이지";
+			var prop="width=400px,height=400px,top=300px,left=200px";
+			window.open(url,title,prop);//(페이지주소, 페이지 제목, 페이지 속성)
+		}
+	}
+
+</script>
+</head>
+<body>
+<h1>팝업창만들기</h1>
+<input type="text" name="val01"/>
+<button id="btn">팝업창</button>
+
+<h2>팝업창에서 전달된 값</h2>
+<input type="text" name="val02"/>
+</body>
+</html>
+
+
+
+
+
+
+
+

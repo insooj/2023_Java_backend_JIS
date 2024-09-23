@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js12_메뉴선택하기</title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding:0px;
+	}
+	img{
+		width: 150px;
+		height: 150px;
+		float: left;
+	}
+	#menu{
+		overflow: auto;
+	}
+	.sel{
+		width: 140px;
+		height: 140px;
+		border: 5px dotted yellow;
+		position:  absolute;
+		left:300px;
+	}
+	button{
+		width: 150px;
+		height: 50px;
+		margin-left: 300px;
+		margin-top: 30px;
+	}
+</style>
+<script type="text/javascript">
+	//실습 문제: 메뉴목록을 동적으로 표현하고 처리하기
+	//처리내용
+	//1. 버튼을 클릭하면 이미지들이 이동되도록 처리하기(이동 반복 실행)
+	//  이동: append()를 이용해서 이동하는 방법
+	//  반복: 이동하는 기능을 계속 반복 -> js: setInterval(기능,ms) 
+	//2. 버튼의 이름을 "start"일 경우 "stop"으로 , "stop"일 경우 "start" 로 변경
+	//3. "stop"버튼을 클릭한면 이미지 이동을 멈추게 하기-> clearInterval()
+	//4. 선택된 메뉴의 이름을 id가 "message"인 div요소에 출력하는 기능
+	//        출력 형식 : "오늘의 메뉴는 치킨입니다."
+	$(function(){
+
+		var moveImg;
+		
+		$("button").click(function(){
+			if($(this).text()=="start"){
+				moveImg=setInterval(function(){
+					$("#menu").append($("#menu > img").first());				
+				},100);	
+				$(this).text("stop");//이미지 실행시켰으니.. 버튼의 이름은 stop으로..			
+			}else{
+				clearInterval(moveImg);
+				$(this).text("start");
+				var idx= ~~($("img").length/2);//중간 위치의 인덱스 구하기
+				var imgName=$("#menu > img").eq(idx).attr("alt");//선택된 이미지 이름 가져오기
+				$("#message").text("오늘의 메뉴는 "+imgName+"입니다.");
+			}
+			
+		});
+	});
+</script>
+</head>
+<body>
+<h1>식사 메뉴를 선택해 주세요!!</h1>
+<div id="menubox">
+	<div class="sel"></div>
+	<div id="menu">
+		<img src="img/chicken.JPG" alt="치킨"/>
+		<img src="img/don.JPG" alt="돈까스"/>
+		<img src="img/jangsu.JPG" alt="삼겹살"/>
+		<img src="img/kimchi.JPG" alt="김치찌개"/>
+		<img src="img/kong.JPG" alt="콩나물국밥"/>
+	</div>
+	<button>start</button>
+	<div id="message" style="text-align: center;"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

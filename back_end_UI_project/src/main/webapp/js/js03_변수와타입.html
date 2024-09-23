@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js03_변수와타입</title>
+
+<style type="text/css">
+	
+</style> 
+<script type="text/javascript">
+	var variable =10;//전역변수: 여러 함수에서 접근 가능 (공용으로 사용)
+	
+	function test01(){
+		variable=variable+5;
+		console.log(variable);
+	}
+	function test02(){
+		//지역변수: 함수 안에서만 접근 가능(함수 실행이 종료되면 저장된 값이 사라짐)
+		var variable=5
+		variable=variable+5;
+//		console.log(variable);
+		val =10;
+		console.log(val +5);
+		
+		var val; //호이스팅 현상: 변수를 선언만 한 상태(초기값X)에서 실행할 경우 미리 변수를 위로 선언되게 인식함 	
+		
+		let val2; //var키워드의 단점을 보완하기위해 추가됨
+		
+		const c=10; //상수선언: 값 변경 금지 
+		c=20;
+		console.log(c);
+	}
+	
+	function test03(){
+		let variable = 5;//숫자(Numbe	)타입
+			variable = "문자열"; //문자열(String)타입
+			variable =[1,2,3,true,"문자"];// 배열타입
+			variable = true;//boolean 타입
+			variable = null;
+			variable = function(){alert("난 함수야");} // Function 객체타입 			
+			variable = { "key1":5, "key2":10,"key3":15}; //json 객체타입
+			console.log(variable.key1+","+variable["key2"]);
+			//합수타입은 variable() : 변수명 +() 호출됨 
+			console.log(typeof variable); // 변수의 타입을 반환
+			//Type Script : const 변수명: string = "hello typescript";	
+	}
+	
+</script>
+</head>
+<body>
+<h1>변수의 선언 규칙</h1>
+<p>1.대소문자 구별</p>
+<p>2.영문자, _ ,$로 시작해야 한다.</p>
+<p>3.영문자, _ ,$, 숫자를 포함할 수 있다.</p>
+<p>4.키워드나 예약어는 사용할 수 없다.</p>
+<h1>변수의 적용범위</h1>
+<p>1. 전역변수<button onclick="test01()">확인</button></p>
+<p>1. 지역변수<button onclick="test02()">확인</button></p>
+<h1>변수의 선언과 저장</h1>
+<p>1. var 키워드를 사용하여 변수 선언(ES5, ES6--> const, let)</p>
+<p>2. 변수의 타입은 저장되는 값의 타입에 따라 결정된다.<button onclick="test03()">확인</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html04_이미지요소</title>
+</head>
+<body>
+<h1>이미지 요소</h1>
+
+<p>이미지 요소는 이미지를 웹페이지에 표현할떄 <br/>
+사이즈 조절을 할 때 해상도를 고려해야 된다.
+</p>
+
+<p>
+	<img src="https://th.bing.com/th/id/OIP.g9-vNFl6o8HwN8WTx0C_VgHaEo?w=213&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"/>
+	<a href="https://www.bing.com/images/search?view=detailV2&ccid=g9%2bvNFl6&id=9FBA28FA2AF0307E83B99CB0866296180A24DCB0&thid=OIP.g9-vNFl6o8HwN8WTx0C_VgHaEo&mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.83dfaf34597aa3c1f037c593c740bf56%3frik%3dsNwkChiWYoawnA%26riu%3dhttp%253a%252f%252fwww.dogdrip.net%252ffiles%252fattach%252fdvs%252f15%252f08%252f24%252f19201543%252f570%252f898%252f079%252f1e9ff22c20d5716d48cd509fbce37e8e.jpg%26ehk%3dpZKOxoGR1P0OrR0xxNA%252b%252fDnXId9NKYp0uaXWABN96NA%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=1600&expw=2560&q=%ec%9d%b4%eb%af%b8%ec%a7%80&simid=607997400627878523&FORM=IRPRST&ck=ACA69CB96F7C8D29101264144E854F73&selectedIndex=0">
+	<img height="200px" width="200px"
+	src="img/testimg.png" 
+	alt="배경이미지입니다 이미지를 클릭하면 해당 사이트로 이동합니다."/>	
+	</a>
+</p>
+<hr/>
+<h1>이미지 맵 사용하기</h1>
+<img src="img/menu.png" alt="중국집 메뉴입니다." usemap="#menu"/>
+<map name="menu">
+	<area alt="해물볶음짬뽕"
+	href="https://www.10000recipe.com/recipe/6865493"
+	shape="rect"
+	coords="8,10,147,146"
+	target="_blank"	
+	
+/map>
+<hr/>
+<h1>링크요소와 target 사용</h1>
+<a target="tt" href="https://www.10000recipe.com/recipe/6865493">이동</a>
+<iframe name="tt" src="html03_텍스트관련요소.html"
+	style="height: 500px; width: 500px;"></iframe>
+
+</body>
+</html>

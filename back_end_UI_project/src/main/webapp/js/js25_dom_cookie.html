@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+/*
+	cookie: 클라이언트 측에 저장된 용량이 적은 데이터, 스크립트로 원하는 정보를 보관, 유지해 준다.
+			서버로 전송됨, 용량은 name=value 한쌍이 4kb 로 제한 , 도메인 하나당 저장 쿠키는 약 20개 정도
+	저장형식:  텍스트 -> "name = value; name2=value2...."
+	
+	내용: cookieName = value; expires= 유효기간; domain= xx.com; path=//path; secure=true;			값을 구분할때 ; 으로 구분해줌
+	유효 기간 설정 : 쿠키 설정할때 유효기간을 설정하지 않으면 브라우저가 종료될때 삭제됨
+	유효기간을 설정하는 방법은 expires나 max-age로 설정한다.
+
+*/
+	//원한느 쿠키값을 가져오기 
+	function getCookie(cookieName){
+		//alert(document.cookie);
+		var cookieSplit=document.cookie.split(";");
+		var value="";
+		
+		for(var i=0;i<cookieSplit.length;i++){
+			if(cookieSplit[i].indexOf(cookieName)!=-1){//존재 여부 판단
+				value=cookieSplit[i].split("=")[1]; //"name=value" -> [name,valeu]
+				console.log(value);
+				return decodeURIComponent(value);
+	
+	
+			}
+		}
+		console.log(value);
+		return null;
+	
+	
+	
+	}
+	
+	// 파라미터 name,value,empires 값은 반드시 설정
+	function setCookie(name,value,expires,domain,path,secure){
+		
+		var cookies=' ';
+		//인코딩처리 
+		//escape() : ASCII코드로 변환
+		//encodeURI() : 주소와 관련된 특수문자  https:hankyung.com?key=value&key/value
+		// 				들을 제외하고 인코딩 처 ㅣ-> URI 전체를 처리할때 사용
+		//encodeURIComponent()  : 모든문자를 인코딩 처리 -> 파라미터를 처리할때 사용 
+		cookies+=name+"="+encodeURIComponent(value);// 1.인코딩처리: ASCII코드로 변환 'A'= 65
+		var date = new Date();
+		date.setDate(date.getDate()+expires);
+		cookies+=";expires="+date.toUTCString();// 2.유효기간 설정:		//세계 표준시로 설정
+		
+		// cookies+=";max-age="+(1000*1*60*60*24)
+		
+		if(domain){
+			cookies+="domain="+domain;//특정 도메인, 하위도메인에서만 사용: hk.com, sub.hk.com
+		}
+		if(path){
+			cookies+=";path="+path;// 경로: hk.com/admin/board
+		}
+		if(secure){
+			cookies+=";secure="+secure;//https로만 접근할 수 있는지 여부 true/false
+		}
+		
+		document.cookie=cookies; //최종 저장하는 코드 
+		
+		
+	}
+	
+
+	function removeCookie(name){
+		var date = new Date();
+		date.setDate(date.getDate()-1);//현재 날짜의 1일 전으로 셋팅 
+		document.cookie=name+"=;expires="+date.toUTCString();
+		//document.cookie=name+"=;max-age=0";
+	}
+	
+	
+
+</script>
+</head>
+<body>
+<button onclick="setCookie('user3','hk3',1)">쿠키추가 </button>
+<button onclick="getCookie('user1')">쿠키값 가져오기  </button>
+<button onclick="removeCookie('user1')">쿠키삭제하기  </button>
+</body>
+</html>

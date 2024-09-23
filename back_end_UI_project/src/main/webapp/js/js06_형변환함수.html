@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js06_형변환함수</title>
+
+<style type="text/css">
+	
+</style> 
+<script type="text/javascript">
+	function numTest(){
+		var inputVal=document.getElementById("num1");
+		//문자열을 합칠 때 "문자열"+"합치자" = "문자열합치자";
+		// concatenation이 발생 --> "10"+10 = "1010"
+		var inputInt=Number(inputVal.value); //숫자로 형변환
+		console.log(inputVal.value+20); //문자열 더하기 
+		console.log(inputInt+20);// 연산 실행 
+	}
+	function intTest(intputEle){//id속성을 통해서 요소객체를 파라미터로 전달 가능
+		console.log(typeof inputEle);
+		var paramVal = parseInt(inputEle.value);//정수형으로 형변
+		console.log(paramVal+10);
+	}
+	function floatTest(FloatEle){
+		console.log(typeof FloatEle);
+		var paramVal=pasreFloat(inputEle.value);
+		console.log(paramVal+5);
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>1.숫자형 형변환 Number()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두<strong>숫자형</strong>으로 변환</p>
+<input type="text" name="num" id="numw1"/>
+<button onclick="numTest()">확인</button>
+
+<h1>2.정수형 형변환 parseInt()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두<strong>정수형</strong>으로 변환</p>
+<input type="text" name="int" id="int1"/>
+<button onclick="intTest(int1)">확인</button>
+
+<h1>3.실수형 형변환 parseFloat()함수</h1>
+<p>문자열이 정수형태든 실수형태든 모두<strong>실수형</strong>으로 변환</p>
+<input type="text" name="float" id="float1"/>
+<button onclick="floatTest(float1)">확인</button>
+
+
+<h1>4. 검증함수 eval()함수</h1>
+<p>문자열로 된 코드를 자바스크립트로 해석한다.</p>
+<input type="text" name="evalue" id="evalue1" placeholder="예) 5+10"/>
+<button onclick="evalTest(evalue1)">확인</button>
+<span>계산결과:</span><span></span>
+<script type="text/javascript">
+	function evalTest(inputEle){
+		if(confirm("작성하신 코드가 맞나요" + inputEle.value)){
+			//계산결과는 span태그에 출력 
+			var evalue = eval(inputEle.value);
+			document.getElementsByTagName("span")[1].textContent=evalue;
+		}else{
+			inputEle.valeu="";
+			inputEle.focus();
+			document.getElementsByTagName("span")[1].textContent="";
+		}
+	}
+	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html05_목록요소</title>
+<style type="text/css">
+		li>ul{display: none ;}
+		ul li{list-style: none ;}
+</style>
+<script type ="text/javascript">
+	window.onload=function(){
+		document.querySelectorAll("span")[0].onclick=function(){
+			document.querySelectorAll("li>ul")[0].style.display="block";
+		}
+	}
+</script>
+</head>
+<body>
+<h1>비순차적 목록 요소</h1>
+<ul>	
+		<li><span>java</span>
+			<ul>
+				<li>변수의 사용</li>
+				<li>제어문</li>
+				<li>객체지향개념[상속,은닉,다형성]</li>
+			</ul>
+		</li>
+		<li><span>MariaDB</span>
+		<ul>
+				<li>환경설정</li>
+				<li>DB모델링개념</li>
+				<li>DML/DDL/DCL</li>
+				<li>테이블,뷰/procedure</li>
+		</ul</li>
+		
+		<li><span>HTML</span></li>
+		<li><span>CSS</span></li>
+	
+	
+</ul>
+<h1>순차적 목록 요소</h1>
+<ol type="a">	
+		<li><span>java</span></li>
+			<ol>
+				<li>변수의 사용</li>
+				<li>제어문</li>
+				<li>객체지향개념[상속,은닉,다형성]</li>
+			</ol>
+		<li><span>MariaDB</span></li>
+		<ol>
+				<li>환경설정</li>
+				<li>DB모델링개념</li>
+				<li>DML/DDL/DCL</li>
+				<li>테이블,뷰/procedure</li>
+		</ol>
+		<li><span>HTML</span></li>
+		<li><span>CSS</span></li>
+	
+</ol>
+<h1>정의형 목록</h1>
+<dl>
+	<dt>back-end</dt>
+	<dd>Java</dd>
+	<dd>database</dd>
+	<dd>JSP</dd>
+	<dt>front_end</dt>
+	<dd>HTML</dd>
+	<dd>CSS</dd>
+	
+</dl>
+</body>
+</html>

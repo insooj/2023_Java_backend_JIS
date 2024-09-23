@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="answer.js"></script>
+<link rel="stylesheet" href="jqtest.css">
+<style type="text/css">
+legend {
+	font-size: 15pt;
+	font-family: 맑은 고딕;
+	color: grey;
+}
+
+#target01,#target02,#target03,.target05,.target06,#parent1,#parent2,.target09,#target10,#target13,#target17,#target19
+,#target18
+	{
+	width: 150px;
+	height: 150px; 
+	background:rgba(235,147,172,1);
+	background:-webkit-gradient(linear,left top,left bottom,color-stop(10.69%,rgba(248,220,220,1)),
+	color-stop(99.54%,rgba(235,147,172,1)));
+	background:-webkit-linear-gradient(top,rgba(248,220,220,1) 10.69%,rgba(235,147,172,1) 99.54%);
+	background:-moz-linear-gradient(top,rgba(248,220,220,1) 10.69%,rgba(235,147,172,1) 99.54%);
+	background:-o-linear-gradient(top,rgba(248,220,220,1) 10.69%,rgba(235,147,172,1) 99.54%);
+	background:-ms-linear-gradient(top,rgba(248,220,220,1) 10.69%,rgba(235,147,172,1) 99.54%);
+	background:linear-gradient(to bottom,rgba(248,220,220,1) 10.69%,rgba(235,147,172,1) 99.54%);
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=rgba(248,220,220,1),
+	 endColorstr=rgba(235,147,172,1),GradientType=0);
+}
+
+#target14{
+	width: 250px;
+	height: 150px;
+	background: #FFC3FA;
+}
+
+#target11 {
+	border: 2px dashed orange;
+	width: 250px;
+}
+
+#target11 h1,#target11 h2,#target11 h3,#target11 h4,#target11 h5 {
+	background: #CBFF75;
+}
+
+#fieldset7 {
+	position: relative;
+	height: 200px;
+}
+
+#parent2 {
+	position: relative;
+	top: -150px;
+	left: 170px;
+}
+
+#child {
+	width: 80px;
+	height: 80px;
+	background: white;
+	margin: 15px auto;
+	font-size: 10pt;
+}
+
+#parentdiv {
+	width:300px;
+	height: 150px;background: #FFC3FA;
+}
+
+.target04 {
+	width: 250px;
+	background: yellow;
+	margin-top: 20px;
+}
+
+#target02 span {
+	background: yellow;
+	margin-left: 50px;
+}
+
+fieldset {
+	width: 70%;
+	border-radius: 10px;
+	border: 1px solid grey;
+	margin-top: 15px;
+}
+
+.target12 {
+	background: #FF73BE;
+	width: 100px;
+	height: 50px;
+	margin-top: 10px;
+}
+
+.target12 span {
+	background: #FFD2FF;
+	margin-left: 20px;
+}
+
+input[name=countview] {
+	position: relative;
+	top: 40px;
+	left: 30px;
+}
+
+#target14 table,#target15 table,#target16 table {
+	border-collapse: collapse;
+	margin: 30px auto;
+}
+
+#target14 table td,#target15 table td {
+	border: 1px solid #7BA87B;
+	text-align: center;
+}
+
+#target14 table td:FIRST-CHILD {
+	background: orange;
+}
+
+#target14 table {
+	width: 200px;
+}
+
+#target14 table td {
+	padding: 5px;
+}
+
+#target15 table thead tr {
+	background: #008080;
+}
+
+#target15 table td {
+	padding: 10px;
+}
+
+#target16 table td {
+	border: 1px solid #E0904C;
+	font-size: 30pt;
+	color: #2C952C;
+	text-align: center;
+	padding: 15px;
+}
+
+#target19 span,#target19 i, #target19 b{background: yellow; margin-left: 20px;} 
+#target18 span{background:  #AECDFF ; margin-left:20px;}
+#target20{background:#FFC3FA; width:300px; height:100px; }
+#target20 input{margin-left: 30px;}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+//함수명은 반드시 지켜주세요.
+//body에 있는 내용은 수정하지 않습니다.
+
+</script>
+</head>
+<body>
+<h2>jQuery Test</h2>
+<fieldset>
+	<legend>1.#target01의 배경색을 변경하세요.</legend>
+	<button onclick="target01()">target01</button>
+	<div id="target01">
+		<i>#target01</i>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>2.#target02의 자식인 span 태그 안의 글을 변경하세요.</legend>
+	<button onclick="target02()">target02</button>
+	<div id="target02">
+	<i>#target02</i><br/><br/><br/><br/>
+		<span>나를 바꿔봐</span>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>3.#target03안의 span 태그를 복사하여 다음위치에 추가하세요.</legend>
+	<button onclick="target03()">target03</button>
+	<div id="target03">
+	<i>#target03</i><br/><br/>
+		<span style="background:orange;">span</span>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>4.아래의 target04 중에 두번째의 .target04의 배경색을 변경하세요.</legend>
+	<button onclick="target04()">target04</button>
+	<div id="parentdiv"><i>.target04</i>
+		<div class="target04">.target04</div>
+		<div class="target04">.target04</div>
+		<div class="target04">.target04</div>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>5.button을 disable 시켜주세요.</legend>
+	<button onclick="target05()">target05</button>
+	<div class="target05"><i>.target05</i>
+		<button>난 버튼이야</button>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>6.체크된 체크박스를 모두 풀어주세요.</legend>
+	<button onclick="target06()">target06</button>
+	<div class="target06"><i>.target06</i><br/>
+		<input type="checkbox" value="1" checked="checked"/>uncheck!<br/>
+		<input type="checkbox" value="2" checked="checked"/>uncheck!<br/>
+		<input type="checkbox" value="3" checked="checked"/>uncheck!<br/>
+		<input type="checkbox" value="4" checked="checked"/>uncheck!
+	</div>
+</fieldset>
+
+
+<fieldset id="fieldset7">
+	<legend>7.#parent1의 #child를 #parent2로 이동시키세요.</legend>
+	<button onclick="target07()">target07</button>
+	<div id="parent1"><i>#parent1</i><br/>
+		<div id="child">
+		    #child<br/><br/>
+			날 이동해줘
+		</div>
+	</div>
+	<div id="parent2"><i>#parent2</i><br/>
+		
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>8.다음의 옵션중 second option을 선택하세요.</legend>
+	<button onclick="target08()">target08</button>
+	<div class="target08"><i>.target08</i><br/>
+		<select multiple="multiple">
+			<option>first</option>
+			<option>second(select me!)</option>
+			<option>third</option>
+		</select>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>9.2초가 지난뒤에 target09의 자식요소들에 폰트 size를 15pt,폰트체를 "Castellar"변경되도록 작성하세요.</legend>
+	<button onclick="target09()">target09</button>
+	<div class="target09">
+		<i>.target09</i><br/>
+		<b>font1</b><br/>
+		<em>font2</em><br/>
+		<b>font3</b><br/>
+		<sub>font4</sub>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>10.#target10의 select option의 홀수(odd)만 배경색을 주세요. </legend>
+	<button onclick="target10()">target10</button>
+	<div id="target10">
+		<i>#target10</i>
+		<select multiple="multiple">
+			<option>option1(odd)</option>
+			<option>option2(even)</option>
+			<option>option3(odd)</option>
+			<option>option4(even)</option>
+		</select>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>11.#target11의 자식요소들중에 h2태그를 제외한 모든 요소를 삭제하세요. </legend>
+	<button onclick="target11()">target11</button>
+	<div id="target11">
+		<i>#target11</i>
+		<h1>h1</h1>
+		<h2>h2(난 지우지마!!)</h2>
+		<h3>h3</h3>
+		<h4>h4</h4>
+		<h5>h5</h5>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>12.div태그 중에 자식 노드를 갖지 않는 모든 div를 삭제하세요.</legend>
+	<button onclick="target12()">target12</button>
+	<div class="target12"><span>span1</span></div><br/>
+	<div class="target12"></div><br/>
+	<div class="target12"><span>span2</span></div><br/>
+	<div class="target12"></div>
+</fieldset>
+
+
+<fieldset>
+	<legend>13.text박스안에 숫자를 1초 간격으로 1씩 증가시켜 주세요.</legend>
+	<button onclick="target13()">target13</button>
+	<div id="target13"><i>#target13</i>
+		<input type="text" name="countview" value="0" size="6"/>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>14.table에 row1(첫번째 tr)과 row2(두번째 tr)의 위치를 바꾸시오.</legend>
+	<button onclick="target14()">target14</button>
+	<div id="target14"><i>#target14</i>
+		<table>
+			<tr><td>ROW1</td><td>Let me down!</td></tr>
+			<tr><td>ROW2</td><td>Let me up!</td></tr>
+		</table>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>15.answer에 연산 결과를 채우시오.</legend>
+	
+	<div id="target15"><button onclick="taget15()">#target15</button>
+		<table>
+			<thead>
+				<tr>
+				<td>NUM1</td><td>OPER</td><td>NUM2</td><td>EQULS</td><td>ANSWER</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				<td>42</td><td>+</td><td>12</td><td>=</td><td>?</td>
+				</tr>
+				<tr>
+				<td>15</td><td>+</td><td>87</td><td>=</td><td>?</td>
+				</tr>
+				<tr>
+				<td>102</td><td>+</td><td>25</td><td>=</td><td>?</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</fieldset>
+
+
+<fieldset>
+	<legend>16.Cell안에 숫자가 10보다 큰 cell들만 배경색을 넣어주세요.</legend>
+	<button onclick="target16()">#target16</button>
+	<div id="target16">
+		<table>
+				<tr>
+				<td>15</td><td>24</td><td>9</td>
+				</tr>
+				<tr>
+				<td>4</td><td>78</td><td>2</td>
+				</tr>
+				<tr>
+				<td>7</td><td>51</td><td>63</td>
+				</tr>
+		</table>
+	</div>
+	
+</fieldset>
+
+
+<fieldset>
+	<legend>17.target17에 배경색을 반복해서 바뀌게 적용하세요.(예:red와 yellow반복 바뀜)</legend>
+	<button onclick="target17()">#target17</button><br/><br/>
+	<div id="target17">#target17</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>18.bold 텍스트가 포함되어 있는 엘리먼트의 텍스트에 bold효과를 적용하세요</legend>
+	<button onclick="target18()">#target18</button><br/><br/>
+	<div id="target18">
+		<i>#target18</i>
+		<br/><br/>
+		<span>bold</span><br/>
+		<span>strike</span><br/>
+		<span>blink</span>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>19.target19의 자식 요소들을 모두 삭제하세요.</legend>
+	<button onclick="target19()">#target19</button><br/><br/>
+	<div id="target19">
+		<i>#target19</i>
+		<br/>
+		<span>child1</span><br/>
+		<span>child2</span><br/>
+		<span>child3</span><br/>
+		<i>child4</i><br/>
+		<b>child5</b>
+	</div>
+</fieldset>
+
+
+<fieldset>
+	<legend>20.textbox에 내용을 읽기만 가능하게 만들고 폰트색깔은 red를 적용하세요.</legend>
+	<button onclick="target20()">#target20</button><br/><br/>
+	<div id="target20">
+		<i>#target20</i><br/><br/>
+		<input type="text" value="나를 읽기만 가능하게 만들어줘!" size="30"/>
+	</div>
+</fieldset>
+
+<br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>
+
+

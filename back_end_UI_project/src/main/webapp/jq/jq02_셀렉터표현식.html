@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+	$(function(){
+		$("#d1").css({"border":"1px solid red","width":"300px"});
+		$("#view").css({"border":"1px solid red","width":"400px","height":"150px"});
+	})
+	
+	function a1(){
+		$("span").css("color","red");
+		$("#view").text('$("span").css("color","red");');
+	}
+	
+	function a2(){
+	//	var t1 = $("#t1"); //객체 정의 -> jquery 객체는 변수선언할때 $을 붙여주기도 한다.
+		$("#t1").css("color","blue");
+		
+	//	var t1JS=document.getElementById("t1");
+	//	var $t2JQ =$(t1JS);
+		$("#view").text('$("#t1").css("color","blue");');
+	}
+	
+	function a3(){
+		$(".t2").css("color","blue");
+		$("#view").text('$(".t2").css("color","yellow");');
+	}
+	
+	function a4(){
+		$("li span").css("color","green");
+		$("#view").text('$("li span").css("color","green");');
+	}
+	
+	function a5(){
+		$("li> span").css("color","red");
+		$("#view").text('$("li> span").css("color","red");');
+	}
+	function a6(){
+		//nth-child() : 인자값 even/odd/n
+		//index값 1부터 시작 n 
+		//2n+1: 일반항 적용 선택: 인덱스 0부터 
+	//	$("li:nth-child(1)").css("background-color","green");
+		$("li:nth-child(2n+1)").css("background-color","green");
+	}
+	function a7(){
+		$("li:first-child").css("color","red");
+	}
+	function a8(){
+		$("li:last-child").css("color","red");
+	}
+</script>
+</head>
+<body>
+<h1>셀렉터표현식</h1>
+<div id="d1">
+	<ul>
+		<li><span>tag로선택하기</span></li>
+		<li id="t1">ID로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>상위 하위의 포함관계로 선택하기</span></li>
+		<li><b><span>parent &gt; child로 선택하기</span></b></li>
+		<li>:nth-child(n/even/odd)로 선택하기</li>
+		<li>:first-child로 선택하기</li>
+		<li>:last-child로 선택하기</li>
+	</ul>
+	<ul>
+		<li><span>tag로선택하기</span></li>
+		<li id="t1">ID로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>상위 하위의 포함관계로 선택하기</span></li>
+		<li><b><span>parent &gt; child로 선택하기</span></b></li>
+		<li>:nth-child(n/even/odd)로 선택하기</li>
+		<li>:first-child로 선택하기</li>
+		<li>:last-child로 선택하기</li>
+	</ul>
+</div>
+<div>
+	<button onclick="a1()">태그선택</button>
+	<button onclick="a2()">ID선택</button>
+	<button onclick="a3()">Class선택</button>
+	<button onclick="a4()">포함관계선택</button>
+	<button onclick="a5()">부모자식관계선택</button>
+	<button onclick="a6()">nth-child선택</button>
+	<button onclick="a7()">first-child선택</button>
+	<button onclick="a8()">last-child선택</button>
+</div>
+<h2>코드 내용</h2>
+<div id="view"></div>
+
+</body>
+</html>

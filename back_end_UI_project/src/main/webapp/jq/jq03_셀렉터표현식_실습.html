@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+	$(function(){
+		//1.
+		$("#simpletext1").css("background-color","yellow");
+		//2.
+		$(".simpletest1").css("color","yellow");
+		//3. 
+		$("span").eq(1).css("font-size","30px");
+		//4.
+		$("div").eq(1).css("font-style","italic");
+		//5.
+		var len=$("div").length;
+		$("#count").text(len);
+		//6.
+		$("div em").css("background-color","blue");
+		//7.
+		$("span> em").css("color","red");
+		//8.
+		$("p:first-child").css("background-color","yellow");
+		//9.
+		$("p:last-child").css("background-color","red");
+		//10.
+		$("p[title]").css("border","1px solid red");
+	});
+</script>
+</head>
+<body>
+<span id="simpletext1">1.simple[현재요소의 배경색:#ff0]</span>
+<div class="simpletest1">2.jQuery[현재요소의 폰트색:#f00]</div>
+<span>3.basic[현재요소의 폰트크기:30pt]</span>
+<div>4.example[현재요소의 폰트스타일: 이텔릭]</div>
+<p>5.div요소의 개수출력하기<span id="count"></span></p>
+<p>6.아래 목록들중 div태그에 포함되어 있는 em요소만 배경색을 blue로 설정하시오</p>
+<p>7.아래 목록들중 span의 자식요소인 em만 폰트색을 red로 설정하시오.</p>
+<div>
+	<em>hello</em>
+	<b><em>jQuery</em></b>
+</div>
+<span>
+	<em>Good Bye!</em>
+	<b><em>javascript</em></b>
+</span>
+<p>8.아래 p태그들중에 첫번째요소에 배경색을 yellow로 설정하세요</p>
+<p>9.아래 p태그들중에 마지막요소에 배경색을 red로 설정하세요</p>
+<p>10.아래 p태그들중에 title속성이 있는 요소에 테두리색을 red로 설정하세요
+<div>
+	<p>a</p>
+	<p>b</p>
+	<p title="속성으로 탐색하기">c</p>
+	<p>d</p>
+	<p>e</p>
+</div>
+
+
+
+
+
+
+</body>
+</html>

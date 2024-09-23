@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Accordion 1</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+
+/* 아코디언 메뉴 구현하기
+ * 1.구성: 각각 상위 메뉴(h3)에 대한 하위메뉴(p)로 구성되어 있으며, 초기 화면은 첫번째 메뉴목록만 하위메뉴가 보이고 화살표 버튼의 방향이 위로 표시
+        나머지 메뉴들의 하위메뉴는 감춤
+   
+   2.기능: 
+   	각각 상위 메뉴의 오른쪽에 위치한 화살표 버튼을 클릭하면 해당 상위 메뉴의 하위메뉴가 슬라이드방식으로 보여지며(활성화) 이때 화살표 방향은 위로 표시
+        나머지 메뉴들의 하위메뉴는 모두 슬라이드 방식으로 감춰지며(비활성화), 이때 화살표 방향은 아래로 표시 
+        ㄴ
+   3.참고: jquery홈페이지 메뉴 API Document에서 하위메뉴 : Selectors , Attributes, Events, Traversing, Effects
+   4.힌트: :not, siblings, class속성을 다루는 메서드들(...Class())
+   5.조건: body내부에 요소들에 대해 id, class등을 추가하여 사용할 수 없음.(제시된 태그(속성등)는 수정하지마세요!)
+ */
+	
+	$(function(){
+		$(".accordion > p").slice(1).hide();
+		$(".accordion > h3").eq(0).addClass("active");	
+		$("h3").click(function(){
+		//클릭한 메뉴에 하위 목록을 보여주기 
+		$(this).next("p").slideDown();//클릭한  h3태그를 보여줌
+		$(this).next("p").siblings("p").slideUp();//클릭한 h3의 하위 p태그의 형제요소들을 감춰줌
+		
+		//화살표 방향 바꾸기 : 클릭한 h3요소에  .active 속성추가 및 삭제하기 
+	//	$(this).addClass("active");
+		//$(this).siblings("h3").removeClass("active");
+		$(this).addClass("active").siblings("h3").removeClass("active");
+		});
+	});
+</script>
+<style type="text/css">
+body {
+	margin: 10px auto;
+	width: 570px;
+	font: 75%/120% Arial, Helvetica, sans-serif;
+}
+/* div 요소에 너비 480px , 테두리 아래(bottom)를 실선 1px 색상 #c4c4c4 정의하시오.  */
+div{
+	width: 480px;
+	border-bottom: 1px solid #c4c4c4;
+}
+/* div 요소내부에 h3요소를 배경색 #e9e7e7, 배경이미지설정 arrow-square.gif, 배경이미지 반복금지, 위치는 right -51px 적용 
+                           안쪽 여백 7px 15px,  외부 여백 0px , 폰트 bold 120%/100% Arial , 테두리 굵기 1px 실선  색은 #c4c4c4
+			   아래 테두리 none, 커서 pointer
+			   
+			   
+*/
+div > h3{
+	background-color: #e9e7e7;
+	background-image: url("arrow-square.gif");
+	background-repeat: no-repeat;
+	background-position: right -51px;
+	padding: 7px 15px;
+	margin: 0px;
+	font: bold 120%/100% Arial;
+	border: 1px solid #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}			   
+
+/* h3요소에 마우스 커서를 올리면 배경색이 #e3e2e2로 바뀌고, 마우스커서가 나가면 원상태로 복귀되도록 설정 */
+h3:hover{
+	background-color: #e3e2e2;
+}
+/* h3요소에 class 이름이 active인 요소에 대한 배경이미지 위치를 right 5px이 되도록 설정 화살표 방향 위로 보이게 */ 
+h3.active{
+	background-position: right 5px;
+}
+
+
+/* p요소들에 대해 배경색 #f7f7f7 , 외부 여백 상하좌우 0px, 내부여백 상 10px 좌우 15px 하 10px , 테두리 좌우 실선 1px 색상  #c4c4c4 로 설정 */
+p{
+	background-color: #f7f7f7;
+	margin: 0px;
+	padding-top: 10px ;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 1px solid #c4c4c4;
+	border-right: 1px solid #c4c4c4;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="accordion">
+	<h3>Question One Sample Text</h3>
+	<p>
+	   	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, 
+	   	ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
+	   	Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
+	</p>
+	<h3>This is Question Two</h3>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, 
+		ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros. 
+		Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
+	</p>
+	<h3>Another Questio here</h3>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, 
+	 	ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
+	 	Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
+	 </p>
+	<h3>Sample heading</h3>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada,
+	 	ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
+	 	Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
+	 </p>
+	<h3>Sample Question Heading</h3>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi malesuada, 
+	  	ante at feugiat tincidunt, enim massa gravida metus, commodo lacinia massa diam vel eros.
+	 	Proin eget urna. Nunc fringilla neque vitae odio. Vivamus vitae ligula.
+	 </p>
+</div>
+</body>
+</html>

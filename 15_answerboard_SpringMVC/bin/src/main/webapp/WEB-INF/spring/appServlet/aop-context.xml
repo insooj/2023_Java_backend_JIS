@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<!-- advice가 구현되어 있는 로그 클래스 등록 -->
+	<bean id="logAop" class="com.hk.ansboard.aop.LogExecute"></bean>
+	
+	<!-- aop 환경설정 -->
+	<aop:config>
+		<!-- advice가 실행될 위치를 설정하는 pointcut 정의 -->
+		<aop:pointcut id="daoLogPoint" 
+			  expression="execution(* com.hk.ansboard.daos.AnsDaoImp.*(..))" />
+		
+		<!-- advice와 pointcut을 연결하는 설정 -->
+		<aop:aspect id="logAspect" ref="logAop">
+			<aop:before method="before" pointcut-ref="daoLogPoint"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="daoLogPoint"/>
+			<aop:after-throwing method="daoError" pointcut-ref="daoLogPoint"/>
+		</aop:aspect>	  															
+	</aop:config>
+	
+	
+	<!-- transaction처리 aop이용 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="replyBoard" propagation="REQUIRED"
+										 rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="serviceTransaction" 
+		      expression="execution(* com.hk.ansboard.service.*ServiceImp.*Board(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceTransaction"/>
+	</aop:config>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{thymeleaf/layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div layout:fragment="content">
+	<div id="container">
+		<h1>일정 상세보기</h1>
+		<form th:action="@{/schedule/calBoardUpdate}" method="post"
+			  th:object="${updateCalCommand}">
+			<input type="hidden" name="seq" th:field="*{seq}"/>
+			<table class="table">
+				<tr>
+					<th>일정</th>
+					<td>
+						<select name="year">
+							<th:block th:each="i:${#numbers.sequence(updateCalCommand.year-5,updateCalCommand.year+5)}">
+								<th:block th:if="${updateCalCommand.year==i}">
+									<option th:value="${i}" th:text="${i}" selected="selected"></option>
+								</th:block>
+								<th:block th:unless="${updateCalCommand.year==i}">
+									<option th:value="${i}" th:text="${i}"></option>
+								</th:block>
+							</th:block>
+						</select>년
+						<select name="month">
+							<th:block th:each="i:${#numbers.sequence(1,12)}">
+								<th:block th:if="${updateCalCommand.month==i}">
+									<option th:value="${i}" th:text="${i}" selected="selected"></option>
+								</th:block>
+								<th:block th:unless="${updateCalCommand.month==i}">
+									<option th:value="${i}" th:text="${i}"></option>
+								</th:block>
+							</th:block>
+						</select>월
+						<select name="date">
+							<th:block th:each="i:${#numbers.sequence(1,31)}">
+								<th:block th:if="${updateCalCommand.date==i}">
+									<option th:value="${i}" th:text="${i}" selected="selected"></option>
+								</th:block>
+								<th:block th:unless="${updateCalCommand.date==i}">
+									<option th:value="${i}" th:text="${i}"></option>
+								</th:block>
+							</th:block>
+						</select>일
+						<select name="hour">
+							<th:block th:each="i:${#numbers.sequence(0,23)}">
+								<th:block th:if="${updateCalCommand.hour==i}">
+									<option th:value="${i}" th:text="${i}" selected="selected"></option>
+								</th:block>
+								<th:block th:unless="${updateCalCommand.hour==i}">
+									<option th:value="${i}" th:text="${i}"></option>
+								</th:block>
+							</th:block>
+						</select>시
+						<select name="min">
+							<th:block th:each="i:${#numbers.sequence(0,59)}">
+								<th:block th:if="${updateCalCommand.min==i}">
+									<option th:value="${i}" th:text="${i}" selected="selected"></option>
+								</th:block>
+								<th:block th:unless="${updateCalCommand.min==i}">
+									<option th:value="${i}" th:text="${i}"></option>
+								</th:block>
+							</th:block>
+						</select>분
+					</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>
+						<input class="form-control" type="text" name="title" 
+							th:field="*{title}"/>
+						<span class="errorField" th:if="${#fields.hasErrors('title')}"
+												 th:errors="*{title}"></span>	
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<textarea name="content" class="form-control"
+								  rows="10" cols="60" 
+								  th:field="*{content}"></textarea>
+					    <span class="errorField" th:if="${#fields.hasErrors('content')}"
+												 th:errors="*{content}"></span>	
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="submit" class="btn btn-default">일정수정</button>
+						<button type="button" title="일정삭제" class="btn btn-default"
+								th:onclick="|location.href='@{/schedule/calMulDel(seq=${updateCalCommand.seq})}'|" >
+						  <span class="glyphicon glyphicon-trash" ></span>
+						</button>
+						<button type="button" title="일정목록" class="btn btn-default"
+								th:onclick="|location.href='@{/schedule/calBoardList}'|" >
+						  <span class="glyphicon glyphicon-list" ></span>
+						</button>
+						<button type="button" title="달력보기" class="btn btn-default"
+								th:onclick="|location.href='@{/schedule/calendar(year=${session.ymdMap.year},month=${session.ymdMap.month})}'|" >                        
+						  <span class="glyphicon glyphicon-calendar" ></span>
+						</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js04_DOM탐색메서드</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	/*
+	class p{
+		public String style;
+		public String title;
+		public String id;
+		public String class;
+	}
+		P p=new P();
+		  p.style;
+		  p.title;
+		  p.id;
+		  p.class="aaa";
+	*/
+	
+	function searchId(){
+		//ID로 탐색해서 배경색을 지정
+		var p=document.getElementById("test1");//body에 있는 p태그를 객체로 생성
+			p.style.backgroundColor="red";
+			p.style.color="white";
+			p.textContent="ID로 탐색";
+			p.innerHTML="<b>innerHTML사용</b>";
+			p.title="아이디로 탐색함";
+			console.log(p.style.backgroundColor);
+	}
+	
+	function searchName(){
+		var inputs=document.getElementsByName("test02");//배열[input,input,input]
+		inputs[0].style.backgroundColor="blue";
+		inputs[1].style.backgroundColor="yellow";
+		inputs[2].style.backgroundColor="red";
+		
+		for(var i=0;i<inputs.length;i++){
+			inputs[i].style.color="orange";
+		}
+		
+		//inputs는 배열이기때문에 실행안됨
+		inputs.style.backgroundColor="blue";//(X)
+		
+	}
+	
+	function searchTagName(){
+		var spans=document.getElementsByTagName("span");
+		for(var i=0;i<spans.length;i++){
+			spans[i].style.backgroundColor="yellow";
+			spans[i].style.display="block";
+			spans[i].style.margin="5px";
+		}			
+	}
+	
+	function searchClassName(){
+		var spans=document.getElementsByClassName("a");
+		spans[0].style.fontSize="40px";
+		spans[1].style.color="red";
+	}
+	
+	function searchQuery(){
+		var querySpan=document.querySelectorAll("p:last-child > span");
+		querySpan[0].style.color="blue";
+	}
+	
+</script>
+</head>
+<body>
+<h1>DOM탐색메서드의 종류</h1>
+<p>
+	1.getElementById("idName"):태그의 id속성 이름으로 탐색
+	- 반환값은 엘리먼트 1개 <button onclick="searchId()">확인</button>
+</p>
+<p id="test1" >ID:test1</p>
+<p>
+	2.getElementsByName("name속성이름"): input 태그의 name속성이름으로 선택
+	- 반환값은 엘리먼트 여러개(배열) <button onclick="searchName()">확인</button>
+	<br/>
+	<input type="text" name="test02"/>
+	<input type="text" name="test02"/>
+	<input type="text" name="test02"/>
+</p>
+<p>
+	3.getElementsByTagName("tag이름"):태그 이름으로 탐색
+	- 반환값은 엘리먼트 여러개(배열) <button onclick="searchTagName()">확인</button>
+	<br/>
+	<span>태그</span><span>이름</span><span>탐색</span>
+</p> 
+<p>
+	4.getElementsByClassName("class이름"):class속성 이름으로 탐색
+	- 반환값은 엘리먼트 여러개(배열) <button onclick="searchClassName()">확인</button>
+	<br/>
+	<span class="a">class</span><span class="a">이름</span><span class="a">탐색</span>
+</p>
+<p>
+	5.querySelectorAll("selector표현식"):반환값 여러개
+	<br/>
+	  querySelector("selector표현식"):반환값 한개
+	  <button onclick="searchQuery()">확인</button>
+	<br/>
+	<span>selector</span><span>쿼리</span><span>탐색</span>
+</p>
+</body>
+</html>
+
+
+
+
+
+
+

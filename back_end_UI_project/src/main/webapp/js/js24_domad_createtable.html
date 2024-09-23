@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js24_domadd_createtable.html</title>
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	// 1. 10개까지만 입력되도록 처리(경고창:10개까지만 추가 가능합니다.)
+	// 2. 입력이 안된 목록 알려주기(경고창:모두 입력해야 합니다.(id,pw..))
+	function tableVal(){
+		var inputs=document.querySelectorAll("input[name]");
+		//inputs[i].value: 각각의 요소에 접근해서 값을 구할 수 있다.
+		console.log("입력값ID:"+(typeof inputs[0].value)); //입력을 안하면 -> ""
+		
+		//입력을 안됐을 경우:  값이 "" --> 개수를 출력해보기
+		var count=0;
+		var msg="";//입력안된 목록 저장하기
+		//count>0
+		//코드작성
+		
+		for(var i=0;i<inputs.length;i++){
+			if(inputs[i].value==undefined||inputs[i].value==null||inputs[i].value==""){//입력이 안된 경우
+				count++;
+				//msg 구하기 : "아이디 비밀번호 ..."
+				//	input	.		td		.	th
+				msg+=inputs[i].parentNode.previousElementSibling.textContent+" ";
+			}
+		}
+		
+		console.log(count);
+		
+		//tr(td4개)객체 만들어주는 코드
+		/*
+		var tr=document.createElement("tr");//tr 1개 생성
+		for(var i=0;i<inputs.length;i++){
+			var td=document.createElement("td");//<td></td>
+			td.textContent=inputs[i].value;//<td>id(입력값)</td>
+			tr.appendChild(td);//<tr>td객체추가</tr>
+		}
+		*/
+		if(count>0){
+			alert("모두 입력하세요~~~"+"("+msg+")");
+		}else{
+			var tbodyCount = document.getElementById("addtr").childElementCount;
+			if(tbodyCount<10){
+			//회원목록에 회원정보를 추가해주는 코드
+			var tr=createTr(inputs);//inputs--> input요소를 배열형태로 전달			
+			document.getElementById("addtr").appendChild(tr);
+				
+			}else{
+				alert("10개까지만 추가가 가능합니다.")				
+			}
+		}
+		
+	}
+	
+	//tr을 생성해주는 함수: 입력값을 받아서 tr을 생성해주는 기능
+	function createTr(inputs){
+		var tr=document.createElement("tr");//tr 1개 생성
+		for(var i=0;i<inputs.length;i++){
+			var td=document.createElement("td");//<td></td>
+			td.textContent=inputs[i].value;//<td>id(입력값)</td>
+			tdtr.appendChild();//<tr>td객체추가</tr>
+		}
+		return tr;
+	}
+</script>
+</head>
+<body>
+<form name="formTest">
+	<table border="1">
+		<caption>회원정보입력</caption>
+		<col width="100px"><col width="300px">
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" name="id"/></td>
+		</tr>
+		<tr>
+			<th>비밀번호</th>
+			<td><input type="password" name="pw"/></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="addr"/></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="tel" name="phone"/></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="추가" onclick="tableVal()"/></td>
+		</tr>
+	</table>
+</form>
+<div id="addTable">
+	<table border="1" id="ctb">
+		<caption>회원정보목록</caption>
+		<col width="100px"><col width="100px"><col width="300px"><col width="200px">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>주소</th>
+				<th>전화번호</th>
+			</tr>			
+		</thead>
+		<tbody id="addtr">
+<!--			<tr>-->
+<!--				<td>id</td>-->
+<!--				<td>pw</td>-->
+<!--				<td>주소</td>-->
+<!--				<td>전화번호</td>-->
+<!--			</tr>-->
+<!--			<tr>-->
+<!--				<td>id</td>-->
+<!--				<td>pw</td>-->
+<!--				<td>주소</td>-->
+<!--				<td>전화번호</td>-->
+<!--			</tr>-->
+<!--			<tr>-->
+<!--				<td>id</td>-->
+<!--				<td>pw</td>-->
+<!--				<td>주소</td>-->
+<!--				<td>전화번호</td>-->
+<!--			</tr>-->
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

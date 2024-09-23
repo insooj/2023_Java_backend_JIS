@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js08_Number객체</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+   onload=function(){
+      //1. 작성방식
+      var num = new Number(10);
+      var num2 = 20;
+     
+      //2. 속성
+      //NaN 속성
+      document.getElementsByTagName("button")[0].onclick=function(){
+         console.log("NaN속성:"+parseInt("aaa"));
+         
+         //infinity 속성
+         console.log("infinity속성:"+(Number.MAX_VALUE+0.00001e+308));
+         
+         
+         //undefined 속성
+         var a;
+         if(a==null||a==""||a==undefined){
+           
+         }else{
+           
+         }
+         //그밖의 메서드종류 : toExponential(), toFixed(), toPrecision()
+      }
+      document.getElementsByTagName("button")[1].onclick=function(){
+		  var num = prompt("숫자만 입력하세요!!","");
+		  if(num==null||num==""){
+			  alert("입력을 반드시 해주세요!!");
+		  }else{
+			  if(isNaN(num)){//숫자가 아니면 true
+				  alert("숫자가 아닙니다. 숫자를 입력하세요");
+				  
+			  }else{
+				  alert(num);
+			  }
+		  }
+		  
+	  }
+      
+      
+      
+   }// onload 종료
+</script>
+</head>
+<body>
+<h1>Number객체</h1>
+<pre>
+   - 정수와 실수를 다루는 객체<button>클릭</button>
+   - 속성: NaN(숫자가 아닌 값), Infinity(JS가 표현할 수 있는 숫자의 범위를 벗어남)
+   - 그밖의 예외를 나타내는 속성
+     undefined: 값이 정의되지 않아서 자바스크립트에서 인식을 못하는 상황 -> var num=5+b;
+     null:변수는 선언되어있지만 값이 비어있는 상태 -> var a;  var a=null;
+     <button>숫자판별(isNaN())</button>
+</pre>
+</body>
+</html>

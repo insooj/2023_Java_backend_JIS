@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html06_표만들기.html</title>
+<style type="text/css">
+	table{border-collapse: collapse;}
+	.td{width: 600px;}
+	
+	.table{display: table;}
+	.tr{display: table-row;}
+	.td{display: table-cell; border: 1px solid black; width: 50px;}
+	
+</style>
+</head>
+<body>
+<h1>기본 표만들기 </h1>
+<table border="1" class="tb">
+<!--	<p>반드시 tr,td안에 데이터를 표현</p>-->
+	<tr><th>번호</th><th>제목</th><th>작성일</th></tr>
+	<tr><td>1</td><td>제목</td><td>2023.08.24</td></tr>
+	<tr><td>2</td><td>제목</td><td>2023.08.23</td></tr>
+</table>
+<h1>2.표의 다양한 구성 요소들 </h1>
+<table border="1"class="tb">
+	<caption>표의 제목</caption>
+	<col width="100px"><col width"=300px"><col width="200px">
+	<thead>
+	<tr><th>번호</th><th>제목</th><th>작성일</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>1</td><td>제목</td><td>2023.08.24</td></tr>
+		<tr><td>2</td><td>제목</td><td>2023.08.23</td></tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="3">바닥글 영역</td></tr>
+	</tfoot>
+</table>
+<h1>3.셀병합하기</h1>
+<table border='1'class="tb">
+	<tr><td rowspan="3">1</td><td>1</td><td>1</td></tr>
+	<tr><td>2</td><td>2</td></tr>
+	<tr><td colspan="2">3</td></tr>
+</table>
+
+<h1>4. 표안에 표 작성하기</h1>
+<table border="1" class="tb">
+	<tr><th>title</th><th>title</th><th>title</th><th>title</th> </tr>
+	<tr>
+		<td>
+			<table border="1">
+				<tr><td>1.1</td><td>1.2</td></tr>
+				<tr><td>1.1</td><td>1.2</td></tr>
+			</table>
+		</td>
+		<td>
+			<table border="1">
+				<tr><td>1.1</td><td>1.2</td></tr>
+				<tr><td>1.1</td><td>1.2</td></tr>
+			</table>
+		</td>
+		<td><table border="1">
+				<tr><td>1.1</td><td>1.2</td></tr>
+				<tr><td>1.1</td><td>1.2</td></tr>
+				<tr><td>1.1</td><td>1.2</td></tr>
+			</table></td>
+		<td>4</td>
+	</tr>
+</table>
+
+<h1>div태그로도 표를 구현할 수 있다.</h1>
+<div class="table">
+	<div class = "tr"><div class="td">1</div><div class="td">1</div></div>
+	<div class = "tr"><div class="td">2</div><div class="td">2</div></div>
+</div>
+
+
+</body>
+</html>

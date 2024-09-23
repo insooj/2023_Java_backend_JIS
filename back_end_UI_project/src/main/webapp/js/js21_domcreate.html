@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript">
+	//Element 객체 생성하기: document.createElement("태그이름") --> element 객체 반환
+	// - setAttribute() : p.setAttribute("id,"hk") -- 재사용 X
+	// - setAttributeNode() : p.setAttributeNode(attr 객체 이름 ) -- 재사용 할 수 있다.
+	// Attribute 객체 생성 하기: document.createElement("속성이름") ---> Attribute객체 반환
+	// - nodeValue: 속성값을 정의 
+	// Text 객체 생성하기: document.createTextNode("text") --> Text 객체 바환 
+	
+	
+	function  eleCreate(){
+		document.getElementById("main").innerHTML+=
+		 "<div style= 'border: 2px solid red;'>엘리먼트생성</div>";
+		
+		var div = document.createElement("div");//1. <div></div>생성
+		var styleAttr=document.createAttribute("style"); //2. style ="" 객체 생성 	
+		var txt = document.createTextNode("엘리먼트 생성"); //3. ""
+	
+		//속성 적용하기 
+		
+		styleAttr.nodeValue="border: 2px solid red;";
+		//1번방법
+		div.setAttributeNode(styleAttr);
+		//2번바법
+		// div.setAttribute("style",border:2px solid red;");
+		//text 넣기 
+		//div.appendChild();
+	div.appendChild(txt);//<div style='border:2px solid red;'>엘리먼트생성</div>
+			
+	
+	document.getElementById("main").appendChild(div);
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>요소 생성하기 </h1>
+<button onclick="eleCreate()">엘리먼트 생성하기</button>
+<div id="main"></div>
+</body>
+</html> 

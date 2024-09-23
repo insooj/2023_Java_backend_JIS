@@ -1,0 +1,250 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hk.ansboard</groupId>
+  <artifactId>15_answerboard_SpringMVC</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <properties>
+	<java-version>11</java-version>
+	<org.springframework-version>5.3.14</org.springframework-version>
+	<org.slf4j-version>1.6.6</org.slf4j-version>
+	<org.aspectj-version>1.6.10</org.aspectj-version>
+  </properties>
+  
+  <dependencies>
+	   <!-- Spring을 사용하기 위한 기본 라이브러리 시작-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Servlet -->
+		<dependency>
+			 <groupId>javax.servlet</groupId>
+			 <artifactId>javax.servlet-api</artifactId>
+			 <version>4.0.1</version>
+			 <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		 <groupId>javax.servlet.jsp</groupId>
+		 <artifactId>javax.servlet.jsp-api</artifactId>
+		 <version>2.3.3</version>
+		 <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		 <groupId>javax.servlet.jsp.jstl</groupId>
+		 <artifactId>jstl-api</artifactId>
+		 <version>1.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+		<dependency>
+		    <groupId>org.apache.taglibs</groupId>
+		    <artifactId>taglibs-standard-impl</artifactId>
+		    <version>1.2.5</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+<!--		<dependency>-->
+<!--		    <groupId>jakarta.servlet</groupId>-->
+<!--		    <artifactId>jakarta.servlet-api</artifactId>-->
+<!--		    <version>5.0.0</version>-->
+<!--		    <scope>provided</scope>-->
+<!--		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api -->
+<!--		<dependency>-->
+<!--		    <groupId>jakarta.servlet.jsp</groupId>-->
+<!--		    <artifactId>jakarta.servlet.jsp-api</artifactId>-->
+<!--		    <version>3.0.0</version>-->
+<!--		    <scope>provided</scope>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--		    <groupId>jakarta.servlet.jsp.jstl</groupId>-->
+<!--		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>-->
+<!--		    <version>1.2.7</version>-->
+<!--		</dependency>-->
+		
+		<!--DB 설정관련 라이브러리 -->
+		<!--mariaDB driver -->
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+		 <groupId>org.mariadb.jdbc</groupId>
+		 <artifactId>mariadb-java-client</artifactId>
+		 <version>2.6.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+		 <groupId>org.mybatis</groupId>
+		 <artifactId>mybatis</artifactId>
+		 <version>3.5.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+		 <groupId>org.mybatis</groupId>
+		 <artifactId>mybatis-spring</artifactId>
+		 <version>2.1.0</version>
+		</dependency>
+		<dependency>
+		 <groupId>org.springframework</groupId>
+		 <artifactId>spring-jdbc</artifactId>
+		 <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+		 <groupId>org.springframework</groupId>
+		 <artifactId>spring-orm</artifactId>
+		 <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+		<dependency>
+		 <groupId>commons-dbcp</groupId>
+		 <artifactId>commons-dbcp</artifactId>
+		 <version>1.4</version>
+		</dependency>
+		<!--DB 설정관련 라이브러리 종료-->
+		
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<!-- dto객체를 어노테이션으로 관리해주는 기능-->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+	<!-- junit test 관련 라이브러리-->
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${org.springframework-version}</version>
+	    <scope>test</scope>
+	</dependency>
+
+	<!-- log 관리를 위한 라이브러리-->
+	<!-- Logging -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>${org.slf4j-version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>jcl-over-slf4j</artifactId>
+	    <version>${org.slf4j-version}</version>
+	    <scope>runtime</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-log4j12</artifactId>
+	    <version>${org.slf4j-version}</version>
+	    <scope>runtime</scope>
+	</dependency>
+	<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+		<!--Logging 종료-->  
+		
+		<!-- AspectJ AOP관련 라이브러리-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		<!-- aop구현할때 필요한 라이브러리 -->
+		<dependency>
+		 <groupId>org.aspectj</groupId>
+		 <artifactId>aspectjweaver</artifactId>
+		 <version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- transaction 관련 라이브러리-->
+		<dependency>
+		 <groupId>org.springframework</groupId>
+		 <artifactId>spring-tx</artifactId>
+		 <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!--json 처리를 위한 라이브러리 -->
+		<!-- ajax처리를 위한 라이브러리-->
+		<dependency>
+		  <groupId>com.fasterxml.jackson.core</groupId>
+		  <artifactId>jackson-annotations</artifactId>
+		  <version>2.10.3</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.fasterxml.jackson.core</groupId>
+		  <artifactId>jackson-databind</artifactId>
+		  <version>2.10.3</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.fasterxml.jackson.core</groupId>
+		  <artifactId>jackson-core</artifactId>
+		  <version>2.10.3</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.10</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.googlecode.json-simple</groupId>
+		  <artifactId>json-simple</artifactId>
+		  <version>1.1.1</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+				<release>${java-version}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+		</plugins>
+	</build>
+</project> 

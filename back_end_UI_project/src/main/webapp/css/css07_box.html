@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css07_box</title>
+<style type="text/css">
+	div{
+		background-color: rgb(255, 255, 255);
+	}
+	*{
+		margin:0px
+	}
+	.box1, .box2{
+		background-color: aqua;
+		width: 300px;
+		height: 100px;
+		margin: 20px;
+	}
+	.box3{
+		padding: 10px;
+		margin: 0 auto; /* auto 값은 좌우 가운데 자동정렬*/
+		width: 800px;
+		background-color: yellowgreen;
+	}
+	.box1{
+		width: 220px;
+		padding: 20px;
+		border: 20px solid;
+		margin-left: -200px;
+	}
+	.box2{
+		text-align: center;
+		margin: 0 auto;
+	}
+	.box1:hover{
+		margin-left: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="box3">
+<div class="box1">너비 300px</div>
+<div class="box2">너비 300px</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+   //선언적 함수 사용: function키워드를 사용하여 정의, 이름이 있다..
+   //            다른 객체에서 호출을 할 수 있다. -> 재사용 가능
+   //             파라미터의 개수만큼 작성해서 호출할 필요 없다
+   function func01(){
+      console.log("선언적 함수");
+      func01_2(10,"20");
+      //var val=fucn01_2();//함수에서 파라미터를 사용하지 않는다면 전달하지 않고도 호출가능
+   }
+   
+   function func01_2(val01,val02){
+      console.log("함수2");
+      return "값";
+   }
+   //익명함수: 객체 내부에서 사용되고 종료 --> 이름이 없기 때문에 다른 객체에서 호출 x
+   //      변수에 저장해서 변수 이름으로 호출 가능 : 변수명()
+   //       파라미터로 기능을 전달할 때 익명함수로 가능하다.
+   var i=0;
+   var func02=function(){
+      console.log("익명함수");
+      // window.setInterval(function(){}, 1000) : 기능을 1초 간격으로 계속 실행
+      setInterval(test,1000);
+     
+   }
+   function test(){
+      console.log(i++);
+   }
+   
+   onload=function(){
+      document.getElementsByTagName("h1")[1].onclick=function(){
+         console.log("익명함수 사용");
+      }
+     
+      document.getElementsByClassName("a")[0].onclick=function(){
+         var jsonObj={
+            subject:"javascript",
+            credit:1,
+            printout:function(){
+               return jsonObj.subject+","+jsonObj.credit+"학점";
+            }
+         }
+         console.log(jsonObj.printout());
+         
+         printCredit(jsonObj.printout); //함수(기능)를 전달할 수 있다.
+         
+         jsonObj.subject="JS";
+         jsonObj["test"]="value";
+         // delete jsonObj["credit"];
+         
+         console.log(jsonObj.subject+","+jsonObj.test);
+         
+         jsonObj["arrowFunc"]=(val1, val2)=>{console.log("화살표함수");};
+         jsonObj.arrowFunc(1,2);
+         
+         let {subject, printout} = jsonObj;
+         console.log("구조분해할당:"+subject+","+printout());
+         
+         console.log(`구조분해할당:${subject},${printout()}`);
+      }//종료
+     
+      //2.객체 생성자 함수 방식
+      document.getElementsByClassName("a")[1].onclick=()=>{
+         var info=new Info();//객체 생성하기: new키워드 사용
+         console.log(info.subject);
+         console.log(info.getTest());
+         console.log(info.printout());
+      }
+     
+      // -프로토타입 사용하기
+      document.getElementsByClassName("a")[2].onclick=()=>{
+         
+         //기존에 객체 기능 추가
+         //프로토타입에서 화살표 함수로 메소드를 할당하면 안된다. -> Info 객체의 this를 가리키지 않음
+         //생성자 함수를 화살표 함수로 정의하면 안된다. -> 화살표 함수는 prototype 속성이 없음
+         Info.prototype.addFunc=function(){
+            alert(`기능추가${this.subject}`);
+           
+         }
+         
+         var info = new Info();
+         console.log("프로토타입사용:"+info.addFunc());
+      }
+      document.getElementsByClassName("a")[3].onclick=function(){
+         closureTest2()();
+         
+         var test=closureTest2();
+            test();
+      }
+   }
+   function printCredit(func){
+      console.log(func()); //함수(기능)를 받아서 실행시킴
+   }
+   
+   
+   //생성자 함수
+   function Info(){
+      var test="html";
+      //변수선언 this키워드 사용
+      this.subject="javascript";
+      this.credit=2;
+      this.printout=function(){ // 객체안에서 정의할때는 익명함수로 정의, 화살표함수는 X
+         return `${this.subject},${this.credit}학점`;
+      }
+      this.getTest=function(){
+         return test;
+      }
+   }
+   
+   //클로저 : 함수 내부에 함수를 구현하여 부모 함수에 정의된 지역변수에 접근할 수 있는 함수
+   //var count=0; //전역변수--> 여러 함수들에서 접근이 가능
+   
+   function closureTest(){
+      var count=0; //지역변수 --> 함수내부에서만 사용 > 상태를 유지 못함
+      count++;
+      console.log(count);
+     
+   }
+   
+   function closureTest2(){
+      var count=0; //지역변수 --> 함수내부에서만 사용 > 상태를 유지 못함
+      return function(){
+         count++;
+         console.log(count);
+      }
+     
+   }
+   
+   // 클로저 함수 완성
+   var closureTest3 = function(){
+      var count=0; //지역변수 --> 상태유지가능
+      return function(){
+         count++;
+         console.log(count);
+      }      
+   }(); //()는 부모 함수를 실행시킴
+</script>
+</head>
+<body>
+<h1>선언적 함수</h1>
+<p>이름이 정의되어있는 기본적인 함수<button onclick="func01()">클릭</button></p>
+<h1>익명 함수</h1>
+<p>이름이 없는 함수<button onclick="func02()">클릭</button></p>
+<h1>자바스크립트에서 객체 만들기</h1>
+<p class="a">1.객체 리터럴 방식</p>
+<p class="a">2.객체 생성자 함수 방식</p>
+<p class="a"> - 프로토타입 사용하기</p>
+<p class="a"> - 클로저 사용하기</p>
+</body>
+</html>

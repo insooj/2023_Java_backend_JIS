@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq12_DOM처리메서드</title>
+<style type="text/css">
+	.insert1,.insert2{
+		border: 1px solid red;
+	}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	/*
+		DOM처리메서드의 개념 2가지
+		- 내부에 추가,삭제...
+		  JS: innerHTML, textContent, appendChild(), insertBefore()
+		  jQ:   html() ,    text()  ,  append()    ,  prepend()
+		- 외부에 추가,삭제...
+		  JQ: after() , before() 
+		- 삭제 
+		  JQ: remove(): 타겟 요소를 삭제
+		      empty() : 타겟의 내부를 삭제
+		      detach(): 타겟을 잘라내기 한다.-> 삭제한 요소를 저장할 수 있다.
+		- 부모로 추가: 타겟을 감싼다 
+				  wrap()  : 타겟에 부모요소를 추가 
+				  unwrap(): 타겟에 부모요소를 삭제
+	*/
+	
+	$(function(){
+		var count=0;
+		$("button").eq(0).click(function(){
+// 			$(".insert1").prepend("<p class='prepend'>"+(count++)+"prepend메서드</p>");
+			
+			//js: insertBefore()사용
+			var div=document.getElementsByClassName("insert1")[0];
+// 			var newp=document.createElement("p");
+// 			newp.textContent="insertBefore메서드"+(count++);
+// 			var oldp=document.getElementsByClassName("a")[0];
+// 			div.insertBefore(newp,oldp);
+
+			div.innerHTML="<p>text</p>"+div.innerHTML;
+		});
+		
+		$("button").eq(1).click(function(){
+			$(".insert1").append("<p class='append'>"+(count++)+"append메서드</p>");		
+		});
+		
+		$("button").eq(2).click(function(){
+			$(".insert1").html("<b>html메서드는 내부 내용을 추가한다.</b>");//set 개념
+			var val=$(".insert1").html();//get개념
+			alert(typeof val);
+		});
+		
+		$("button").eq(3).click(function(){
+			$(".insert1").text("<b>text메서드</b>");
+		});
+		
+		$("button").eq(4).click(function(){
+			$(".insert1").eq(1).append($(".insert1").eq(0).children().first());
+		});
+		
+		//외부요소추가메서드
+		$("button").eq(5).click(function(){
+			$(".insert2").eq(0).after("<div class='add'>"+(count++)+"엘리먼트를 다음에 추가한다.</div>");
+		});
+		$("button").eq(6).click(function(){
+			$(".insert2").eq(0).before("<div class='add'>"+(count++)+"엘리먼트를 앞에 추가한다.</div>");
+		});
+		$("button").eq(7).click(function(){
+			$(".insert2").eq(1).after($(".insert2").eq(0).children("p").eq(0));
+		});
+	});
+</script>
+</head>
+<body>
+<h1>내부요소추가하기</h1>
+<button>prepend</button>
+<button>append</button>
+<button>html</button>
+<button>text</button>
+<button>DOM이동</button>
+<div class="insert1">
+	<p class="a">내부추가하기</p>
+</div>
+<br/>
+<div class="insert1">
+	<p>여기로 이동시켜요</p>
+</div>
+<hr>
+<h1>외부요소 추가하기</h1>
+<button>after</button>
+<button>before</button>
+<button>DOM이동</button>
+<div class="insert2">
+	<p class="a">외부추가하기</p>
+</div>
+<br/>
+<div class="insert2">
+	<p>여기로 이동시켜요</p>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

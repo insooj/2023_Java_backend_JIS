@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<style type="text/css">
+
+</style> 
+<script type="text/javascript" src="jquery_3.7.1.js"></script>
+<!--<script type="text/javascript" src="<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>"></script>-->
+<!--<script src="https://code.jquery.com/jquery-latest.js"></script>-->
+<script type="text/javascript">
+			
+		/*
+			설정하기: - 내부파일 링크
+					- URL링크(CDN)
+					
+			작성방식
+			$ 특수문자를 사용. $의미 -> == jquery()
+			js: load 이벤트를 작성 -> onload= function(){}
+			jq: 				-> $(function(){}) 1번방법
+								-> %(document).ready(function(){}) 2번방법
+		*/
+		
+		//$(function(){}) : onload기능
+		$(function(){
+			alert("jqeury 안녕");
+		});
+		
+		
+		function imgSize(){
+			//var img = document.querySelectorAll("div>img");
+			var img = $("div>img");
+			//imgJS.css() (x) JS와 JQ를 섞어서 쓰면 안됨 -> 객체의 유형이 다를경우 
+		//img.css("width","100px");
+			//img.css("height","100px");
+			img.css({"width":"100px","height":"100px"});//배열객체여도 한번에 처리 가능 		
+		
+		
+		}
+		
+		function highlight(){
+			$("ol>li").eq(1).css("background-color","yellow");
+			$("ol>li").last().css("background-color","yellow");
+		}
+		
+		function addImg(){
+			$("div").eq(0),append("<img src='../js/img/1.jpg'/>");
+			
+			//js 문법
+			var img=document.createElement("img");
+			img.setAttribute("src","../js/img/1.jpg");
+			document.querySelectorAll("div")[1].appendChild(img);
+		document.querySelectorAll("div")[1].innerHTML+="<img src='../js/img/2.jpg' />";		}
+		</script>
+</head>
+<body>
+<h1>jquery의 내용</h1>
+<ol>
+	<li>셀렉터표현식</li>
+	<li>DOM탐색메서드</li>
+	<li>DOM처리메서드</li>
+	<li>이벤트메서드</li>
+	<li>이팩트메서드</li>
+	<li>Axax메서드 </li>
+	<li>기타메서드</li>
+
+	<button onclick="imgSize()">이미지축소</button>
+	<button onclick="highlight()">리스트강조하기</button>
+	<button onclick="addImg()">이미지추가하기</button>
+		<button onclick="hide()">이미지추가하기</buuton>
+</body>
+</html>               

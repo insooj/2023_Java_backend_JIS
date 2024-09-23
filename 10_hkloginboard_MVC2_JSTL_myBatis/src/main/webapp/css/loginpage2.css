@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+*{
+	margin:0px;
+	padding:0px;
+}
+
+body{
+	background-color: #dcdcdc; 
+}
+
+button{
+	border:1px solid #3CA0E1;
+	background-color: #0A6EFF;
+	border-radius:5px;
+	width: 300px;
+	height:40px;
+	color:white;
+	font-weight: bold;
+}
+
+button:hover{
+	background-color:#B9E2FA;
+	color:#0A6EFF; 
+}
+
+form{
+	width:300px;
+	margin: 10% auto;
+}
+
+.loginVal{
+	border: 0px;
+	width: 288px;
+	height: 40px;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+input, button{
+	margin:2px;
+}
+
+
+
+
+
+
+
+
